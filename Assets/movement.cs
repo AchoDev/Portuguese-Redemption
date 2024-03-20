@@ -12,6 +12,7 @@ public class movement : MonoBehaviour
     [SerializeField] float sprintSpeed;
 
     bool sprinting = false;
+    public bool allowMovement = true;
 
     float moveDirection = 0;
     float currentRotation = 0;
@@ -34,6 +35,8 @@ public class movement : MonoBehaviour
 
     void FixedUpdate() 
     {
+        if(!allowMovement) return;
+
         rb.velocity = new Vector2(moveDirection * speed * (sprinting ? sprintSpeed : 1), rb.velocity.y);
 
         transform.rotation = Quaternion.Slerp(
