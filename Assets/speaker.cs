@@ -21,6 +21,7 @@ public class speaker : MonoBehaviour
     TextMeshProUGUI nameBox;
     Animator animator;
     movement playerMovement;
+    GameObject eIndicator;
 
     bool playerInTrigger = false;
     bool animationFinished = false;
@@ -34,7 +35,10 @@ public class speaker : MonoBehaviour
         animator = GameObject.Find("Canvas/dialogue").GetComponent<Animator>();
         textBox = GameObject.Find("Canvas/dialogue/content").GetComponent<TextMeshProUGUI>();
         nameBox = GameObject.Find("Canvas/dialogue/name").GetComponent<TextMeshProUGUI>();
-        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<movement>();
+        
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        playerMovement = player.GetComponent<movement>();
+        eIndicator = player.transform.Find("indicator").gameObject;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -71,6 +75,7 @@ public class speaker : MonoBehaviour
     void Update()
     {
         if(talking) textBox.text = currentText;
+        eIndicator.SetActive(playerInTrigger && !talking);
         
         if(!(playerInTrigger && Input.GetKeyDown(KeyCode.E))) return;
         
