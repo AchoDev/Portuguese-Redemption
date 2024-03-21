@@ -11,7 +11,7 @@ public class CameraFocusPoint : MonoBehaviour
 
     public Transform focusPoint;
     [Range(0.1f, 5)] public float cameraSpeed = 1f;
-    [Range(0, 5)]public float ortho = 2.5f;
+    [Range(0.1f, 5)]public float ortho = 2.5f;
     public CinemachineBlendDefinition.Style transitionType = CinemachineBlendDefinition.Style.EaseInOut;
 
     // Start is called before the first frame update

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -12,23 +13,38 @@ enum People
     Leo,
 }
 
+enum Clothing 
+{
+    normal,
+    suit,
+}
+
+enum Emotion {
+    neutral,
+    annoyed,
+    sad,
+    angry,
+}
+
 [System.Serializable]
 class Message {
     public People name;
     [TextArea(3, 10)]
     public string dialogue;
-    public string emotion = "neutral";
+    public Clothing clothing = Clothing.normal;
+    public Emotion emotion = Emotion.neutral;
 }
 
-[RequireComponent(typeof(BoxCollider2D)), RequireComponent(typeof(CameraFocusPoint))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class speaker : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    [TextArea(3, 10)]
-    [SerializeField] new string name;
-    [SerializeField] Message[] dialogue;
     [SerializeField, Range(0, 0.1f)] float timeBetweenLetters = 0.025f;
+    [SerializeField, Range(0.1f, 5f)] float cameraSpeed = 1f;
+    [SerializeField, Range(0.1f, 5)] float ortho = 2.5f;
+    [Space(10)]
+    [SerializeField] Message[] dialogue;
 
 
     BoxCollider2D trigger;
@@ -41,7 +57,6 @@ public class speaker : MonoBehaviour
     GameObject eIndicator;
 
     bool playerInTrigger = false;
-    bool animationFinished = false;
     bool talking = false;
 
     int currentLine = 0;
@@ -58,7 +73,10 @@ public class speaker : MonoBehaviour
         playerMovement = player.GetComponent<movement>();
         eIndicator = player.transform.Find("indicator").gameObject;
 
-        cameraFocusPoint = GetComponent<CameraFocusPoint>();
+        cameraFocusPoint = gameObject.AddComponent<CameraFocusPoint>();
+        cameraFocusPoint.cameraSpeed = cameraSpeed;
+        cameraFocusPoint.ortho = ortho;
+        
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -82,7 +100,6 @@ public class speaker : MonoBehaviour
     void initiateTalk()
     {
         talking = true;
-        animationFinished = false;
         currentText = "";
         animator.SetBool("speaking", true);
         nameBox.text = name;
@@ -97,6 +114,7 @@ public class speaker : MonoBehaviour
             (transform.position + playerMovement.transform.position) / 2
         );
 
+        setNewImage();
         StartCoroutine(finishAnimation());
     }
 
@@ -132,6 +150,8 @@ public class speaker : MonoBehaviour
                 cameraFocusPoint.Unfocus();
             } else 
             {
+                
+                setNewImage();
                 StartCoroutine(talk());
             }
         }
@@ -139,13 +159,19 @@ public class speaker : MonoBehaviour
 
     void setNewImage()
     {
-        GameObject parent = animator.transform.Find(dialogue[currentLine].name.ToString()).gameObject;
+        Message message = dialogue[currentLine];
+
+        nameBox.text = message.name.ToString();
+
+        GameObject parent = animator.transform.Find($"Image/{message.name.ToString()}").gameObject;
         for(int i = 0; i < parent.transform.childCount; i++)
         {
             parent.transform.GetChild(i).gameObject.SetActive(false);
         }
 
-        parent.transform.Find(dialogue[currentLine].emotion).gameObject.SetActive(true);
+        string searchingFor = $"{message.clothing.ToString()}-{message.emotion.ToString()}";
+
+        parent.transform.Find(searchingFor).gameObject.SetActive(true);
     }
 
     IEnumerator talk()
@@ -164,14 +190,11 @@ public class speaker : MonoBehaviour
     {
         yield return new WaitForSeconds(0.4f);
         StartCoroutine(talk());
-        animationFinished = true;
     }
 
     void Reset()
     {
         trigger = GetComponent<BoxCollider2D>();
         trigger.isTrigger = true;
-
-        cameraFocusPoint = GetComponent<CameraFocusPoint>();
     }
 }
