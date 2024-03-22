@@ -382,8 +382,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.9
-  m_fontSizeBase: 20.9
+  m_fontSize: 24.5
+  m_fontSizeBase: 24.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -879,7 +879,7 @@ GameObject:
   - component: {fileID: 416755486}
   - component: {fileID: 416755485}
   m_Layer: 5
-  m_Name: suit-neutral
+  m_Name: neutral
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -958,7 +958,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &439294067
 Transform:
   m_ObjectHideFlags: 0
@@ -1071,7 +1071,7 @@ GameObject:
   - component: {fileID: 454854857}
   - component: {fileID: 454854856}
   m_Layer: 5
-  m_Name: suit-annoyed
+  m_Name: annoyed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1402,6 +1402,90 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &597874399
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 597874401}
+  - component: {fileID: 597874400}
+  m_Layer: 0
+  m_Name: thomas_grave
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &597874400
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597874399}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: a29c55587b0334517bf54928c97ef17f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 16.94, y: 12.37}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &597874401
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597874399}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.11, y: 0.56, z: -0.11}
+  m_LocalScale: {x: 0.22679925, y: 0.22679925, z: 0.22679925}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &609691014
 GameObject:
   m_ObjectHideFlags: 0
@@ -1799,6 +1883,8 @@ GameObject:
   - component: {fileID: 807204995}
   - component: {fileID: 807204994}
   - component: {fileID: 807204993}
+  - component: {fileID: 807204998}
+  - component: {fileID: 807204997}
   m_Layer: 0
   m_Name: bick nuterus
   m_TagString: Untagged
@@ -1921,13 +2007,100 @@ Transform:
   m_GameObject: {fileID: 807204992}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.698, y: 0.24, z: -0.03}
+  m_LocalPosition: {x: 3.799, y: 0.24, z: -0.03}
   m_LocalScale: {x: 0.12658861, y: 0.12658861, z: 0.12658861}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 390379709}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &807204997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807204992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ac3b2fac4724c8e983de2635845c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnTowardsPlayer: 1
+  setAnimatorTalking: 1
+  timeBetweenLetters: 0.025
+  focusCamera: 1
+  cameraSpeed: 1
+  ortho: 2.5
+  dialogue:
+  - name: 1
+    dialogue: Hey Leo, again sorry for your loss
+    emotion: 0
+  - name: 0
+    dialogue: Yeah... thank you. You gave me the strength to try to reddeem myself
+      somehow
+    emotion: 0
+  - name: 1
+    dialogue: Sure sure... that being said, this sign here is pretty interesting
+    emotion: 0
+  - name: 0
+    dialogue: Interesting? What do you mean?
+    emotion: 0
+  - name: 1
+    dialogue: It's talking about you
+    emotion: 0
+  - name: 0
+    dialogue: About me? This sign was here since 10 years, why should it be talking
+      about me?
+    emotion: 1
+  - name: 1
+    dialogue: I dunno. Give it a look and see for yourself
+    emotion: 4
+--- !u!61 &807204998
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807204992}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -2.2822194, y: -0.7199116}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 20.48, y: 20.48}
+    newSize: {x: 20.48, y: 20.48}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 11.042513, y: 14.46933}
+  m_EdgeRadius: 0
 --- !u!1 &809890499
 GameObject:
   m_ObjectHideFlags: 0
@@ -2154,7 +2327,7 @@ GameObject:
   - component: {fileID: 973156376}
   - component: {fileID: 973156375}
   m_Layer: 5
-  m_Name: suit-sad
+  m_Name: sad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2622,7 +2795,7 @@ GameObject:
   - component: {fileID: 1145740406}
   - component: {fileID: 1145740405}
   m_Layer: 5
-  m_Name: suit-angry
+  m_Name: angry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4489,38 +4662,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89ac3b2fac4724c8e983de2635845c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnTowardsPlayer: 0
+  setAnimatorTalking: 0
   timeBetweenLetters: 0.025
+  focusCamera: 1
   cameraSpeed: 1
   ortho: 2.5
   dialogue:
   - name: 0
     dialogue: Hallo mein name ist leo
-    clothing: 1
     emotion: 0
   - name: 0
     dialogue: "Warum hast du mein penis entf\xFChrt????"
-    clothing: 1
     emotion: 3
   - name: 0
     dialogue: Ich hab ihn doch gebraucht :(
-    clothing: 1
     emotion: 2
   - name: 0
     dialogue: "Gestern wollte ich nur ein bisschen spa\xDF haben, pl\xF6tzlich schau
       ich runter und es ist glatt"
-    clothing: 1
     emotion: 2
   - name: 0
     dialogue: "NAT\xDCRLICH! Man kann nicht einen tag leben als becockter typ heutzutage"
-    clothing: 1
     emotion: 3
   - name: 0
     dialogue: "Immer diese Polen. Die k\xF6nnen nicht aufh\xF6ren zu klauen"
-    clothing: 1
     emotion: 1
   - name: 0
     dialogue: Naja zumindest hab ich noch mein freshen Anzug
-    clothing: 1
     emotion: 0
 --- !u!61 &1980376651
 BoxCollider2D:
@@ -4554,7 +4723,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.17282534, y: 0.6784996}
+  m_Offset: {x: 0.24418998, y: -0.06573105}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4565,7 +4734,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.4934607, y: 3.5859797}
+  m_Size: {x: 1.8640609, y: 2.0975184}
   m_EdgeRadius: 0
 --- !u!4 &1980376652
 Transform:
@@ -4594,7 +4763,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2004393336}
   m_Layer: 5
-  m_Name: Leo
+  m_Name: LeoSuit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4918,3 +5087,4 @@ SceneRoots:
   - {fileID: 1980376652}
   - {fileID: 1558138505}
   - {fileID: 807204996}
+  - {fileID: 597874401}
