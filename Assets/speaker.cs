@@ -9,8 +9,8 @@ using UnityEngine;
 
 enum People 
 {  
-    [EnumMember(Value = "Leo")]
     Leo,
+    BickNuterus,
 }
 
 enum Clothing 
@@ -24,6 +24,7 @@ enum Emotion {
     annoyed,
     sad,
     angry,
+    happy,
 }
 
 [System.Serializable]
@@ -76,7 +77,7 @@ public class speaker : MonoBehaviour
         cameraFocusPoint = gameObject.AddComponent<CameraFocusPoint>();
         cameraFocusPoint.cameraSpeed = cameraSpeed;
         cameraFocusPoint.ortho = ortho;
-        
+
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -170,6 +171,11 @@ public class speaker : MonoBehaviour
         }
 
         string searchingFor = $"{message.clothing.ToString()}-{message.emotion.ToString()}";
+
+        if(message.clothing == Clothing.normal)
+        {
+            searchingFor = message.emotion.ToString();
+        }
 
         parent.transform.Find(searchingFor).gameObject.SetActive(true);
     }
