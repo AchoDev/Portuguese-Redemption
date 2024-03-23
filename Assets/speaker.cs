@@ -10,6 +10,7 @@ using UnityEditor.PackageManager.Requests;
 using UnityEditor.Search;
 using UnityEditor.UI;
 using UnityEngine;
+using UnityEngine.Events;
 
 enum People 
 {  
@@ -23,6 +24,9 @@ enum Emotion {
     sad,
     angry,
     happy,
+    embarrassed,
+    sus,
+    kawaii
 }
 
 [System.Serializable]
@@ -40,9 +44,11 @@ public class speaker : MonoBehaviour
 
     [Space(10)]
     [Header("General")]
+    [SerializeField] GameObject initiator;
     [SerializeField] bool turnTowardsPlayer = false;
     [SerializeField] bool setAnimatorTalking = false;
     [SerializeField, Range(0, 0.1f)] float timeBetweenLetters = 0.025f;
+    [SerializeField] UnityEvent onDialogueFinish;
     
     [Space(10)]
     [Header("Camera")]
@@ -60,7 +66,7 @@ public class speaker : MonoBehaviour
 
     TextMeshProUGUI textBox;
     TextMeshProUGUI nameBox;
-    Animator animator;
+    Animator canvasAnimator;
     movement playerMovement;
     GameObject eIndicator;
 
@@ -80,7 +86,7 @@ public class speaker : MonoBehaviour
 
     void Start()
     {
-        animator = GameObject.Find("Canvas/dialogue").GetComponent<Animator>();
+        canvasAnimator = GameObject.Find("Canvas/dialogue").GetComponent<Animator>();
         textBox = GameObject.Find("Canvas/dialogue/content").GetComponent<TextMeshProUGUI>();
         nameBox = GameObject.Find("Canvas/dialogue/name").GetComponent<TextMeshProUGUI>();
         
@@ -92,14 +98,13 @@ public class speaker : MonoBehaviour
         cameraFocusPoint.cameraSpeed = cameraSpeed;
         cameraFocusPoint.ortho = ortho;
 
-        originalSize = transform.localScale.x;
+        originalSize = initiator.transform.localScale.x;
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player"))
         {
-            Debug.Log("Player entered the trigger");
             playerInTrigger = true;
         }
     }
@@ -108,7 +113,6 @@ public class speaker : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Debug.Log("Player exited the trigger");
             playerInTrigger = false;
             eIndicator.SetActive(false);
         }
@@ -118,7 +122,7 @@ public class speaker : MonoBehaviour
     {
         talking = true;
         currentText = "";
-        animator.SetBool("speaking", true);
+        canvasAnimator.SetBool("speaking", true);
         nameBox.text = name;
 
         currentLine = 0;
@@ -127,8 +131,10 @@ public class speaker : MonoBehaviour
         playerMovement.allowMovement = false;
 
         if(setAnimatorTalking) {
-            GetComponent<Animator>().SetBool("talking", true);
+            initiator.GetComponent<Animator>().SetBool("talking", true);
+            // animator.SetBool("talking", true);
         }
+
 
         cameraFocusPoint.Focus(
             (transform.position + playerMovement.transform.position) / 2
@@ -141,23 +147,29 @@ public class speaker : MonoBehaviour
     void turnAround() 
     {
         if(!turnTowardsPlayer) return;
+        Transform t = initiator.transform;
         if(talking) {
-            float newSize = playerMovement.transform.position.x - transform.position.x > 0 ? originalSize : -originalSize;
+            float newSize = playerMovement.transform.position.x - t.position.x > 0 ? originalSize : -originalSize;
 
-            transform.localScale = Vector3.SmoothDamp(
-                transform.localScale, 
-                new Vector3(newSize, transform.localScale.y, transform.localScale.z), 
+            initiator.transform.localScale = Vector3.SmoothDamp(
+                t.localScale,
+                new Vector3(newSize, t.localScale.y, t.localScale.z), 
                 ref turnVelocity,
                 0.1f
             );
         } else {
-            transform.localScale = Vector3.SmoothDamp(
-                transform.localScale, 
-                new Vector3(originalSize, transform.localScale.y, transform.localScale.z), 
+            initiator.transform.localScale = Vector3.SmoothDamp(
+                t.localScale, 
+                new Vector3(originalSize, t.localScale.y, t.localScale.z), 
                 ref turnVelocity,
                 0.1f
             );
         }
+    }
+
+    public void speak()
+    {
+        initiateTalk();
     }
 
     // Update is called once per frame
@@ -196,14 +208,17 @@ public class speaker : MonoBehaviour
                 talking = false;
                 currentLine = 0;
                 currentText = "";
-                animator.SetBool("speaking", false);
+                canvasAnimator.SetBool("speaking", false);
                 // playerMovement.allowMovement = true;
                 cameraFocusPoint.Unfocus();
 
                 StartCoroutine(waitBeforeEnd(dialogue[dialogue.Length - 1].name.ToString()));
 
+                if(onDialogueFinish != null) onDialogueFinish.Invoke();
+
                 if(setAnimatorTalking) {
-                    GetComponent<Animator>().SetBool("talking", false);
+                    initiator.GetComponent<Animator>().SetBool("talking", false);
+                    // animator.SetBool("talking", false);
                 }
             } else 
             {
@@ -216,7 +231,7 @@ public class speaker : MonoBehaviour
 
     void disableCurrentImages()
     {
-        GameObject parent = animator.transform.Find($"Image/{dialogue[currentLine - 1].name.ToString()}").gameObject;
+        GameObject parent = canvasAnimator.transform.Find($"Image/{dialogue[currentLine - 1].name.ToString()}").gameObject;
         for(int i = 0; i < parent.transform.childCount; i++)
         {
             parent.transform.GetChild(i).gameObject.SetActive(false);
@@ -229,11 +244,9 @@ public class speaker : MonoBehaviour
 
         nameBox.text = SplitCamelCase(message.name.ToString());
 
-        GameObject parent = animator.transform.Find($"Image/{message.name.ToString()}").gameObject;
+        GameObject parent = canvasAnimator.transform.Find($"Image/{message.name.ToString()}").gameObject;
 
         string searchingFor = message.emotion.ToString();
-
-        Debug.Log(parent);
 
         if(parent.transform.Find(searchingFor) == null) {
             Debug.LogWarning("No image found for emotion: " + searchingFor + " in " + message.name.ToString() + "!");
@@ -263,15 +276,13 @@ public class speaker : MonoBehaviour
 
     IEnumerator waitBeforeEnd(string lastSpeaker)
     {
-
         yield return new WaitForSeconds(0.4f);
         playerMovement.allowMovement = true;
-        GameObject parent = animator.transform.Find($"Image/{lastSpeaker}").gameObject;
+        GameObject parent = canvasAnimator.transform.Find($"Image/{lastSpeaker}").gameObject;
         for(int i = 0; i < parent.transform.childCount; i++)
         {
             parent.transform.GetChild(i).gameObject.SetActive(false);
         }
-
     }
 
     void Reset()
