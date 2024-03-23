@@ -44,7 +44,7 @@ public class speaker : MonoBehaviour
 
     [Space(10)]
     [Header("General")]
-    [SerializeField] GameObject initiator;
+    [SerializeField] GameObject initiator = null;
     [SerializeField] bool turnTowardsPlayer = false;
     [SerializeField] bool setAnimatorTalking = false;
     [SerializeField, Range(0, 0.1f)] float timeBetweenLetters = 0.025f;
