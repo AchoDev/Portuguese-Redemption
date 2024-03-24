@@ -67,6 +67,7 @@
     <Compile Include="Assets/FightController.cs" />
     <Compile Include="Assets/CameraFocusPoint.cs" />
     <Compile Include="Assets/speaker.cs" />
+    <Compile Include="Assets/FightConductor.cs" />
     <Compile Include="Assets/movement.cs" />
   </ItemGroup>
   <ItemGroup>
