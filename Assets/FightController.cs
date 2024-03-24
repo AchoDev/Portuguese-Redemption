@@ -8,11 +8,14 @@ public class FightController : MonoBehaviour
     
     [SerializeField] float speed = 5;
 
+    float health = 100;
+
     Rigidbody2D rb;
     Animator animator;
     [SerializeField] GameObject enemy;
 
     int movementDirection;
+    bool attacking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -41,19 +44,34 @@ public class FightController : MonoBehaviour
             animator.SetInteger("moveDirection", 0);
         }
 
+        if(attacking) 
+        {
+            movementDirection = 0;
+            animator.SetInteger("moveDirection", 0);
+        }
+
         if(Input.GetKeyDown(KeyCode.K))
         {
             animator.SetTrigger("frontPunch");
+            attacking = true;
         }
 
-        if(Input.GetKey(KeyCode.S))
+        if(!attacking) 
         {
-            animator.SetBool("crouch", true);
-            movementDirection = 0;
-        } else
-        {
-            animator.SetBool("crouch", false);
+            if(Input.GetKey(KeyCode.S))
+            {
+                animator.SetBool("crouch", true);
+                movementDirection = 0;
+            } else
+            {
+                animator.SetBool("crouch", false);
+            }
         }
+    }
+    
+    public void setAttackingFalse()
+    {
+        attacking = false;
     }
 
     void FixedUpdate()
