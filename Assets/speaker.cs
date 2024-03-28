@@ -16,6 +16,8 @@ enum People
 {  
     LeoSuit,
     BickNuterus,
+    SemranEmadi,
+    AA,
 }
 
 enum Emotion {
