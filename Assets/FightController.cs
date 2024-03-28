@@ -76,6 +76,7 @@ public class FightController : MonoBehaviour
 
     void FixedUpdate()
     {
+        Debug.Log(movementDirection);
         rb.velocity = new Vector2(movementDirection * speed, rb.velocity.y);
     }
 }
