@@ -98,7 +98,10 @@ public class speaker : MonoBehaviour
         cameraFocusPoint.cameraSpeed = cameraSpeed;
         cameraFocusPoint.ortho = ortho;
 
-        originalSize = initiator.transform.localScale.x;
+        if(initiator == null) initiator = gameObject;
+        else {
+            originalSize = initiator.transform.localScale.x;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
