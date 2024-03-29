@@ -1,14 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager.Requests;
-using UnityEditor.Search;
-using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -27,6 +21,7 @@ enum Emotion {
     angry,
     happy,
     embarrassed,
+    funny,
     sus,
     kawaii
 }
@@ -60,6 +55,13 @@ public class speaker : MonoBehaviour
 
     [Space(10)]
     [Header("Dialogue")]
+    [Tooltip(@"
+        <wait [milliseconds]> wait for milliseconds
+        <skip> skip to end of line
+        <next> go to next line
+        <play [name]> play sound
+        <speed [milliseconds]> change text speed
+    ")]
     [SerializeField] Message[] dialogue;
 
 
@@ -101,9 +103,8 @@ public class speaker : MonoBehaviour
         cameraFocusPoint.ortho = ortho;
 
         if(initiator == null) initiator = gameObject;
-        else {
-            originalSize = initiator.transform.localScale.x;
-        }
+        
+        originalSize = initiator.transform.localScale.x;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -151,7 +152,6 @@ public class speaker : MonoBehaviour
 
     void turnAround() 
     {
-        if(!turnTowardsPlayer) return;
         Transform t = initiator.transform;
         if(talking) {
             float newSize = playerMovement.transform.position.x - t.position.x > 0 ? originalSize : -originalSize;
@@ -184,7 +184,7 @@ public class speaker : MonoBehaviour
 
         if(playerInTrigger && !talking) eIndicator.SetActive(true);
 
-        turnAround();
+        if(turnTowardsPlayer) turnAround();
 
         if(Input.GetKeyDown(KeyCode.E))
         {
