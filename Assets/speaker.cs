@@ -44,7 +44,8 @@ public class speaker : MonoBehaviour
     [SerializeField] GameObject initiator = null;
     [SerializeField] bool turnTowardsPlayer = false;
     [SerializeField] bool setAnimatorTalking = false;
-    [SerializeField, Range(0, 0.1f)] float timeBetweenLetters = 0.025f;
+    [SerializeField, Range(0, 100f)] float timeBetweenLetters = 25;
+    float timeBetweenLettersOriginal;
     [SerializeField] UnityEvent onDialogueFinish;
     
     [Space(10)]
@@ -61,6 +62,7 @@ public class speaker : MonoBehaviour
         <next> go to next line
         <play [name]> play sound
         <speed [milliseconds]> change text speed
+        <rspeed> reset text speed to original
     ")]
     [SerializeField] Message[] dialogue;
 
@@ -105,6 +107,7 @@ public class speaker : MonoBehaviour
         if(initiator == null) initiator = gameObject;
         
         originalSize = initiator.transform.localScale.x;
+        timeBetweenLettersOriginal = timeBetweenLetters;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -203,8 +206,8 @@ public class speaker : MonoBehaviour
         string text = dialogue[currentLine].dialogue;
         if(currentIndex < text.Length) // skip to end of line
         {
+            currentText += text.Substring(currentIndex);
             currentIndex = text.Length - 1;
-            currentText = text;
         } else // go to next line
         {
             currentLine++;
@@ -225,13 +228,20 @@ public class speaker : MonoBehaviour
                     initiator.GetComponent<Animator>().SetBool("talking", false);
                     // animator.SetBool("talking", false);
                 }
+
+                timeBetweenLetters = timeBetweenLettersOriginal;
             } else 
             {
-                disableCurrentImages();
-                setNewImage();
-                StartCoroutine(talk());
+                startNextLine();
             }
         }
+    }
+
+    void startNextLine()
+    {
+        disableCurrentImages();
+        setNewImage();
+        StartCoroutine(talk());
     }
 
     void disableCurrentImages()
@@ -264,13 +274,66 @@ public class speaker : MonoBehaviour
     IEnumerator talk()
     {
         currentIndex = 0;
+        currentText = "";
         int line = currentLine;
-        while(currentIndex < dialogue[currentLine].dialogue.Length && currentLine == line)
+        int commandLength = 0;
+        while(currentIndex < dialogue[currentLine].dialogue.Length - commandLength && currentLine == line)
         {
+            // currentText = dialogue[currentLine].dialogue.Substring(0, currentIndex);
+
+            if(dialogue[currentLine].dialogue[currentIndex] == '<')
+            {
+                string command = "";
+                commandLength++;
+                currentIndex++;
+                Func<char> currentCommandChar = () => dialogue[currentLine].dialogue[currentIndex];
+
+                while(currentCommandChar() != '>')
+                {
+                    command += currentCommandChar();
+                    currentIndex++;
+                    commandLength++;
+                }
+                commandLength++;
+                yield return StartCoroutine(evaluateCommand(command));
+            } else {
+                currentText += dialogue[currentLine].dialogue[currentIndex];
+            }
             currentIndex++;
-            currentText = dialogue[currentLine].dialogue.Substring(0, currentIndex);
-            yield return new WaitForSeconds(timeBetweenLetters);
+            yield return new WaitForSeconds(timeBetweenLetters / 1000f);
         }
+    }
+
+    IEnumerator evaluateCommand(string command) 
+    {
+        string[] parts = command.Split(' ');
+        switch(parts[0])
+        {
+            case "wait":
+                int milliseconds = int.Parse(parts[1]);
+                yield return new WaitForSeconds(milliseconds / 1000f);
+                break;
+            case "skip":
+                currentIndex = dialogue[currentLine].dialogue.Length - 1;
+                break;
+            case "next":
+                currentLine++;
+                startNextLine();
+                break;
+            case "play":
+                break;
+            case "speed":
+                timeBetweenLetters = float.Parse(parts[1]);
+                break;
+            case "rspeed":
+                timeBetweenLetters = timeBetweenLettersOriginal;
+                break;
+            default:
+                Debug.LogWarning("Unknown command: " + parts[0]);
+                break;
+        }
+
+        yield return null;
     }
 
     IEnumerator finishAnimation()
