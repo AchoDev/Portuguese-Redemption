@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using TMPro;
@@ -47,7 +48,7 @@ public class speaker : MonoBehaviour
     [SerializeField, Range(0, 100f)] float timeBetweenLetters = 25;
     float timeBetweenLettersOriginal;
     [SerializeField] UnityEvent onDialogueFinish;
-    
+
     [Space(10)]
     [Header("Camera")]
     [SerializeField] bool focusCamera = true;
@@ -85,6 +86,7 @@ public class speaker : MonoBehaviour
     int currentLine = 0;
     int currentIndex = 0;
     string currentText = "";
+    List<int[]> commands = new List<int[]>();
 
     string SplitCamelCase(string source) {
         return Regex.Split(source, @"(?<!^)(?=[A-Z])").Aggregate((a, b) => a + " " + b);
@@ -130,7 +132,6 @@ public class speaker : MonoBehaviour
     void initiateTalk()
     {
         talking = true;
-        currentText = "";
         canvasAnimator.SetBool("speaking", true);
         nameBox.text = name;
 
@@ -183,7 +184,29 @@ public class speaker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(talking) textBox.text = currentText;
+        if(talking)  {
+
+            string formattedText = currentText;
+
+            foreach(int[] command in commands)
+            {
+                try {
+                    formattedText = formattedText.Remove(command[0], command[1] - command[0]);
+                    Debug.Log(command[0]);
+                    Debug.Log(command[1]);
+                } catch (Exception e) {
+                    // Debug.LogWarning("Error removing command: " + e.Message);
+                    // Debug.Log(command[0]);
+                    // Debug.Log(command[1]);
+                    // Debug.Log(currentText);
+                    // Debug.Log(formattedText);
+
+
+                }
+            }
+
+            textBox.text = formattedText;
+        }
 
         if(playerInTrigger && !talking) eIndicator.SetActive(true);
 
@@ -215,7 +238,6 @@ public class speaker : MonoBehaviour
             {
                 talking = false;
                 currentLine = 0;
-                currentText = "";
                 canvasAnimator.SetBool("speaking", false);
                 // playerMovement.allowMovement = true;
                 cameraFocusPoint.Unfocus();
@@ -239,6 +261,7 @@ public class speaker : MonoBehaviour
 
     void startNextLine()
     {
+        commands.Clear();
         disableCurrentImages();
         setNewImage();
         StartCoroutine(talk());
@@ -274,19 +297,19 @@ public class speaker : MonoBehaviour
     IEnumerator talk()
     {
         currentIndex = 0;
-        currentText = "";
         int line = currentLine;
         int commandLength = 0;
         while(currentIndex < dialogue[currentLine].dialogue.Length - commandLength && currentLine == line)
         {
-            // currentText = dialogue[currentLine].dialogue.Substring(0, currentIndex);
+            
 
             if(dialogue[currentLine].dialogue[currentIndex] == '<')
             {
+                int startIndex = currentIndex;
                 string command = "";
-                commandLength++;
-                currentIndex++;
                 Func<char> currentCommandChar = () => dialogue[currentLine].dialogue[currentIndex];
+                currentIndex++;
+                commandLength++;
 
                 while(currentCommandChar() != '>')
                 {
@@ -294,11 +317,17 @@ public class speaker : MonoBehaviour
                     currentIndex++;
                     commandLength++;
                 }
+
+                currentIndex++;
                 commandLength++;
+
+
+                commands.Add(new int[] {startIndex, currentIndex});
+                Debug.Log("wtf adding command??: " + startIndex + " " + currentIndex);
                 yield return StartCoroutine(evaluateCommand(command));
-            } else {
-                currentText += dialogue[currentLine].dialogue[currentIndex];
             }
+
+            currentText = dialogue[currentLine].dialogue.Substring(0, currentIndex + 1);
             currentIndex++;
             yield return new WaitForSeconds(timeBetweenLetters / 1000f);
         }
