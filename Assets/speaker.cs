@@ -187,15 +187,15 @@ public class speaker : MonoBehaviour
         if(talking)  {
 
             string formattedText = currentText;
+            int buffer = 0;
 
             foreach(int[] command in commands)
             {
                 try {
-                    formattedText = formattedText.Remove(command[0], command[1] - command[0]);
-                    Debug.Log(command[0]);
-                    Debug.Log(command[1]);
+                    formattedText = formattedText.Remove(command[0] - buffer, command[1] - command[0]);
+                    buffer += command[1] - command[0];
                 } catch (Exception e) {
-                    // Debug.LogWarning("Error removing command: " + e.Message);
+                    Debug.LogWarning("Error removing command: " + e.Message);
                     // Debug.Log(command[0]);
                     // Debug.Log(command[1]);
                     // Debug.Log(currentText);
@@ -298,31 +298,22 @@ public class speaker : MonoBehaviour
     {
         currentIndex = 0;
         int line = currentLine;
-        int commandLength = 0;
-        while(currentIndex < dialogue[currentLine].dialogue.Length - commandLength && currentLine == line)
+        while(currentIndex < dialogue[currentLine].dialogue.Length && currentLine == line)
         {
-            
-
             if(dialogue[currentLine].dialogue[currentIndex] == '<')
             {
                 int startIndex = currentIndex;
                 string command = "";
                 Func<char> currentCommandChar = () => dialogue[currentLine].dialogue[currentIndex];
                 currentIndex++;
-                commandLength++;
 
                 while(currentCommandChar() != '>')
                 {
                     command += currentCommandChar();
                     currentIndex++;
-                    commandLength++;
                 }
 
-                currentIndex++;
-                commandLength++;
-
-
-                commands.Add(new int[] {startIndex, currentIndex});
+                commands.Add(new int[] {startIndex, currentIndex + 1});
                 Debug.Log("wtf adding command??: " + startIndex + " " + currentIndex);
                 yield return StartCoroutine(evaluateCommand(command));
             }

@@ -912,7 +912,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 2048
   m_textAlignment: 65535
   m_characterSpacing: -3.33
@@ -2487,7 +2487,7 @@ MonoBehaviour:
   initiator: {fileID: 0}
   turnTowardsPlayer: 0
   setAnimatorTalking: 0
-  timeBetweenLetters: 25
+  timeBetweenLetters: 40
   onDialogueFinish:
     m_PersistentCalls:
       m_Calls: []
@@ -2496,8 +2496,34 @@ MonoBehaviour:
   ortho: 2.5
   dialogue:
   - name: 0
-    dialogue: test <speed 100>this is very slow <rspeed> reset speed!!!!!
-    emotion: 0
+    dialogue: Oh Thomas, Thomas, Thomas
+    emotion: 2
+  - name: 0
+    dialogue: You know, you never were good at this, were you?
+    emotion: 2
+  - name: 0
+    dialogue: Why didn't you just-
+    emotion: 2
+  - name: 0
+    dialogue: Just..-
+    emotion: 2
+  - name: 0
+    dialogue: ......
+    emotion: 2
+  - name: 0
+    dialogue: You know how I always told you that sometimes, when you close your
+      eyes, you can't see anything?
+    emotion: 2
+  - name: 0
+    dialogue: Right...? R-<wait 200>right..?
+    emotion: 2
+  - name: 0
+    dialogue: Don't worry bro, I'll avenge you. No Chef of LBZ will get away with
+      this
+    emotion: 2
+  - name: 0
+    dialogue: Just you wait... this will be our <wait 100><speed 100>Portuguese Redemption
+    emotion: 2
 --- !u!61 &597874403
 BoxCollider2D:
   m_ObjectHideFlags: 0
