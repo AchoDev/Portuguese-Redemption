@@ -349,6 +349,12 @@ public class speaker : MonoBehaviour
             case "rspeed":
                 timeBetweenLetters = timeBetweenLettersOriginal;
                 break;
+            case "image":
+                string currentDialogue = dialogue[currentLine].dialogue;
+                dialogue[currentLine].dialogue = currentDialogue.Insert(currentIndex + 1, $"<sprite=0>");
+                currentIndex += 10;
+                Debug.Log(currentText);
+                break;
             default:
                 Debug.LogWarning("Unknown command: " + parts[0]);
                 break;

@@ -928,7 +928,7 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
+  m_spriteAsset: {fileID: 11400000, guid: 357ad6f7c7fb61644a574f7f4a1a86f2, type: 2}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
   m_TextStyleHashCode: -1183493901
@@ -2221,6 +2221,110 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1111325438}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &472935482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 472935485}
+  - component: {fileID: 472935484}
+  - component: {fileID: 472935483}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &472935483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472935482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ac3b2fac4724c8e983de2635845c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initiator: {fileID: 0}
+  turnTowardsPlayer: 0
+  setAnimatorTalking: 0
+  timeBetweenLetters: 25
+  onDialogueFinish:
+    m_PersistentCalls:
+      m_Calls: []
+  focusCamera: 1
+  cameraSpeed: 1
+  ortho: 2.5
+  dialogue:
+  - name: 0
+    dialogue: this is an image test <image sus_emoji>
+    emotion: 0
+--- !u!61 &472935484
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472935482}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!4 &472935485
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472935482}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.78, y: 0.28, z: 1.0789042}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &483885328
 GameObject:
@@ -7865,6 +7969,81 @@ Transform:
   - {fileID: 1156487119}
   m_Father: {fileID: 990915018}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 87.217}
+--- !u!1 &735002528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 735002529}
+  - component: {fileID: 735002531}
+  - component: {fileID: 735002530}
+  m_Layer: 5
+  m_Name: embarrassed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &735002529
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735002528}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2004393336}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &735002530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735002528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 43ebac7399a8f6d4c9ab2dc368bbb9be, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &735002531
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735002528}
+  m_CullTransparentMesh: 1
 --- !u!1 &742825681
 GameObject:
   m_ObjectHideFlags: 0
@@ -8397,6 +8576,81 @@ Transform:
   - {fileID: 2102235285}
   m_Father: {fileID: 86004476}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -2.476}
+--- !u!1 &753862927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 753862928}
+  - component: {fileID: 753862930}
+  - component: {fileID: 753862929}
+  m_Layer: 5
+  m_Name: sus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &753862928
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753862927}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1208160230}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &753862929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753862927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: faec1b909f0f47f4fa7787fb8e2515cd, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &753862930
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 753862927}
+  m_CullTransparentMesh: 1
 --- !u!1 &754172484
 GameObject:
   m_ObjectHideFlags: 0
@@ -14694,6 +14948,7 @@ RectTransform:
   - {fileID: 2116900926}
   - {fileID: 750563252}
   - {fileID: 187620339}
+  - {fileID: 753862928}
   m_Father: {fileID: 742825682}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -16199,25 +16454,79 @@ MonoBehaviour:
     dialogue: '"Blah blah blah"'
     emotion: 0
   - name: 4
-    dialogue: '"Thomas was known for many things. He liked drawing, dancing and children"'
+    dialogue: '"Thomas was known for many things. He liked drawing, dancing-'
     emotion: 0
   - name: 4
+    dialogue: and children...?
+    emotion: 7
+  - name: 4
     dialogue: Wait what..? Nevermind. Where was I... uhh
-    emotion: 0
+    emotion: 1
   - name: 4
     dialogue: '"His unwavering loyalty and persistence is one we should treasure
       and look up to."'
     emotion: 0
   - name: 4
-    dialogue: '"Was arrested and became a registered sex offender...? Twice?"'
-    emotion: 0
+    dialogue: '"He was arrested and became a registered sex offender...? Twice?"'
+    emotion: 7
   - name: 4
     dialogue: '"This quality of his was especially shown only one Month ago when
       he..."'
-    emotion: 0
+    emotion: 7
   - name: 4
     dialogue: Wha... who wrote this...?
+    emotion: 1
+  - name: 4
+    dialogue: Sorry for the interruption... ahem
+    emotion: 1
+  - name: 4
+    dialogue: '"Thomas may have had his fair share of quirks. He was flawed like
+      all of us are. Nobody is perfect"'
     emotion: 0
+  - name: 4
+    dialogue: '"He may have said some strange and unhinged things in the past, but
+      we can forget and we can forgive, can we not?'
+    emotion: 0
+  - name: 4
+    dialogue: '"With one exception, walking into LBZ alone like he did is exceedingly
+      foolish. Everyone can learn from a mistake as unintelligent as that one"'
+    emotion: 0
+  - name: 4
+    dialogue: '"Nevertheless, rest in peace, Thomas Possinio"'
+    emotion: 0
+  - name: 4
+    dialogue: I can actually agree with this last one
+    emotion: 0
+  - name: 4
+    dialogue: Okay... ah... Leo, would you like to add anything?
+    emotion: 0
+  - name: 0
+    dialogue: Yeah..., I-I a-actually do
+    emotion: 2
+  - name: 4
+    dialogue: Alright, your turn then
+    emotion: 0
+  - name: 0
+    dialogue: As you all know, Thomas meant a lot to me. Or at least I hope you know
+      that
+    emotion: 2
+  - name: 0
+    dialogue: Back then we... uh... we used to lots of cock fencing
+    emotion: 2
+  - name: 3
+    dialogue: <image sus_emoji> <play boom>
+    emotion: 7
+  - name: 2
+    dialogue: <image sus_emoji> <play boom>
+    emotion: 7
+  - name: 0
+    dialogue: Oh... ah haha.. probably shouldn't have said that out loud haha...
+      ehh
+    emotion: 5
+  - name: 0
+    dialogue: Oh... ah haha.. probably shouldn't have said that out loud haha...
+      ehh
+    emotion: 5
 --- !u!61 &1580796986
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17863,6 +18172,7 @@ RectTransform:
   - {fileID: 973156374}
   - {fileID: 688372633}
   - {fileID: 1673536684}
+  - {fileID: 735002529}
   m_Father: {fileID: 742825682}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -18313,3 +18623,4 @@ SceneRoots:
   - {fileID: 1832272463}
   - {fileID: 744187523}
   - {fileID: 1580796984}
+  - {fileID: 472935485}
