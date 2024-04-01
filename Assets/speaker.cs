@@ -13,6 +13,7 @@ enum People
     BickNuterus,
     SemranEmadi,
     AA,
+    MohawkMan
 }
 
 enum Emotion {
