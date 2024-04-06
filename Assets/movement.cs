@@ -12,6 +12,7 @@ public class movement : MonoBehaviour
     [SerializeField] float sprintSpeed;
 
     bool sprinting = false;
+    bool driving = false;
     public bool allowMovement = true;
 
     float moveDirection = 0;
@@ -29,13 +30,27 @@ public class movement : MonoBehaviour
         currentXSize = normalXSize;
     }
 
+    void earlyUpdate()
+    {
+        if(!allowMovement) return;
+    }
+
     // Update is called once per frame
     void Update()
     {
         moveDirection = Input.GetAxis("Horizontal");
 
-        sprinting = Input.GetKey(KeyCode.LeftShift);
-        animator.SetBool("sprinting", sprinting);
+        if(!driving)
+        {
+            sprinting = Input.GetKey(KeyCode.LeftShift);
+            animator.SetBool("sprinting", sprinting);
+        }
+
+        if(Input.GetKeyDown("e") && driving)
+        {
+            driving = false;
+            animator.SetTrigger("exit");
+        }
     }
 
     void FixedUpdate() 
@@ -49,7 +64,7 @@ public class movement : MonoBehaviour
         
         if(!allowMovement) return;
 
-        rb.velocity = new Vector2(moveDirection * speed * (sprinting ? sprintSpeed : 1), rb.velocity.y);
+        rb.velocity = new Vector2(moveDirection * speed * (sprinting ? sprintSpeed : 1) * (driving ? 3 : 1), rb.velocity.y);
 
 
         if(Input.GetAxisRaw("Horizontal") != 0)
@@ -60,5 +75,17 @@ public class movement : MonoBehaviour
         {
             animator.SetBool("running", false);
         }
+    }
+
+    public void startDriving()
+    {
+        StartCoroutine(drive());
+    }
+
+    IEnumerator drive()
+    {
+        animator.SetTrigger("drive");
+        yield return new WaitForEndOfFrame();
+        driving = true;
     }
 }
