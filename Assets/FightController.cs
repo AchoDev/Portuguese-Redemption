@@ -12,7 +12,7 @@ public class FightController : MonoBehaviour
 
     Rigidbody2D rb;
     Animator animator;
-    [SerializeField] GameObject enemy;
+    GameObject enemy;
 
     int movementDirection;
     bool attacking = false;
@@ -22,6 +22,7 @@ public class FightController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        enemy = GameObject.FindWithTag("Enemy");
     }
 
     // Update is called once per frame
@@ -76,7 +77,6 @@ public class FightController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(movementDirection);
         rb.velocity = new Vector2(movementDirection * speed, rb.velocity.y);
     }
 }
