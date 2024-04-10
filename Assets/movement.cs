@@ -30,11 +30,6 @@ public class movement : MonoBehaviour
         currentXSize = normalXSize;
     }
 
-    void earlyUpdate()
-    {
-        if(!allowMovement) return;
-    }
-
     // Update is called once per frame
     void Update()
     {

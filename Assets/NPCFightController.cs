@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class NPCFightController : MonoBehaviour
 {
@@ -16,8 +17,9 @@ public class NPCFightController : MonoBehaviour
     State currentState = State.Idle;
     GameObject player;
     Animator animator;
+    Rigidbody2D rb;
     IEnumerator currentCoroutine;
-    bool attacking = false;
+    [SerializeField]bool attacking = false;
     int moveDirection;
 
     Vector3 originalSize;
@@ -28,6 +30,7 @@ public class NPCFightController : MonoBehaviour
     {
         originalSize = transform.localScale;
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindWithTag("Player");
         StartCoroutine(IterateStates());
 
@@ -38,7 +41,11 @@ public class NPCFightController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.SetInteger("moveDirection", moveDirection);
+        if(attacking) return;
+
+        animator.SetInteger("moveDirection", moveDirection * (player.transform.position.x < transform.position.x ? -1 : 1));
+        rb.velocity = new Vector2(moveDirection * 1.5f, rb.velocity.y);
+
         Vector3 turnSize;
         if(player.transform.position.x < transform.position.x)
         {
@@ -60,10 +67,10 @@ public class NPCFightController : MonoBehaviour
     {
         while(true)
         {
+            if(attacking) continue;
             if(Vector2.Distance(transform.position, player.transform.position) < 1.5f)
             {
                 attacking = true;
-
                 int attackId = Random.Range(0, 3);
                 switch(attackId)
                 {
@@ -75,18 +82,21 @@ public class NPCFightController : MonoBehaviour
                         break;
                     case 2:
                         moveDirection = 1;
-                        animator.SetTrigger("punch");
-                        yield return new WaitForSeconds(0.1f);
                         break;
                     case 3:
                         moveDirection = -1;
                         break;
                 }
-                yield return new WaitForSeconds(0.25f);
+                yield return new WaitForSeconds(0.1f);
                 animator.SetTrigger("punch");
+                moveDirection = 0;
+                yield return new WaitForSeconds(1f);
+                attacking = false;
+
             } else 
             {
                 moveDirection = (int)Mathf.Sign(player.transform.position.x - transform.position.x);
+                yield return null;
             }   
         }
         
@@ -105,7 +115,7 @@ public class NPCFightController : MonoBehaviour
     IEnumerator HoldState() 
     {
         int id = Random.Range(0, 3);
-        float time = Random.Range(1, 15);
+        float time = Random.Range(5, 15);
 
         switch (id) 
         {
