@@ -67,7 +67,10 @@ public class NPCFightController : MonoBehaviour
     {
         while(true)
         {
-            if(attacking) continue;
+            if(attacking) {
+                yield return null;
+                continue;
+            };
             if(Vector2.Distance(transform.position, player.transform.position) < 1.5f)
             {
                 attacking = true;
@@ -106,16 +109,15 @@ public class NPCFightController : MonoBehaviour
     {
         while(true)
         {
+            // Debug.Log("State: " + currentState);
             yield return StartCoroutine(HoldState());
-
-            Debug.Log("State: " + currentState);
         }
     }
 
     IEnumerator HoldState() 
     {
         int id = Random.Range(0, 3);
-        float time = Random.Range(5, 15);
+        float time = Random.Range(2, 7);
 
         switch (id) 
         {
@@ -123,6 +125,7 @@ public class NPCFightController : MonoBehaviour
                 currentState = State.Idle;
                 break;
             case 1:
+                Debug.Log("Attack state");
                 currentState = State.Attack;
                 if(currentCoroutine != null) {
                     StopCoroutine(currentCoroutine);
