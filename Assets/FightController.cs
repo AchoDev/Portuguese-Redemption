@@ -79,4 +79,9 @@ public class FightController : MonoBehaviour
     {
         rb.velocity = new Vector2(movementDirection * speed, rb.velocity.y);
     }
+
+    public void damageEnemy(float damage)
+    {
+        enemy.GetComponent<NPCFightController>().takeDamage(damage);
+    }
 }

@@ -25,6 +25,9 @@ public class NPCFightController : MonoBehaviour
 
     TextMeshProUGUI debugText;
 
+    float health = 100;
+    bool falling = false;
+
     Vector3 originalSize;
     Vector3 turnVelocity;
 
@@ -34,9 +37,12 @@ public class NPCFightController : MonoBehaviour
 
     [SerializeField] float speed = 1.5f;
 
+    DoubleSlider healthBar;
+
     // Start is called before the first frame update
     void Start()
     {
+        healthBar = GameObject.Find("enemy health")?.GetComponent<DoubleSlider>();
         originalSize = transform.localScale;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -50,6 +56,9 @@ public class NPCFightController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        healthBar.value = health;
+
         if(debugText != null) {
             debugText.text = "State: " + currentState + "\n" + "Attacking: " + attacking;
         }
@@ -218,5 +227,16 @@ public class NPCFightController : MonoBehaviour
         }
 
         yield return new WaitForSeconds(time / 1000f);
+    }
+
+    public void takeDamage(float damage) 
+    {
+        if(falling) return;
+
+
+
+        animator.SetTrigger("critical");
+        health = Mathf.Clamp(health - damage, 0, 100);
+        falling = true;
     }
 }
