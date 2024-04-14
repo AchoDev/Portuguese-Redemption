@@ -1161,6 +1161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 379443546}
   - component: {fileID: 379443547}
+  - component: {fileID: 379443548}
   m_Layer: 8
   m_Name: fist
   m_TagString: Untagged
@@ -1218,6 +1219,37 @@ CircleCollider2D:
   m_Offset: {x: 1.0791279, y: 0.038944226}
   serializedVersion: 2
   m_Radius: 0.6458484
+--- !u!114 &379443548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379443545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4226e011c73eeb444866f9ac9436b7bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tag: Enemy
+  onTriggerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 474364730}
+        m_TargetAssemblyTypeName: FightController, Assembly-CSharp
+        m_MethodName: damageEnemy
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 10
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onTriggerExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &408698217
 GameObject:
   m_ObjectHideFlags: 0
@@ -3107,7 +3139,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1716514253}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0, z: 0.99951875, w: -0.031021109}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3116,7 +3148,7 @@ Transform:
   - {fileID: 836443829}
   - {fileID: 2034838762}
   m_Father: {fileID: 757427663}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 183.555}
 --- !u!1 &1729392435
 GameObject:
   m_ObjectHideFlags: 0

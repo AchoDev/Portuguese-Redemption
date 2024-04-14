@@ -21,6 +21,7 @@ public class NPCFightController : MonoBehaviour
     Rigidbody2D rb;
     IEnumerator currentCoroutine;
     bool attacking = false;
+    bool dead = false;
     int moveDirection;
 
     TextMeshProUGUI debugText;
@@ -63,7 +64,7 @@ public class NPCFightController : MonoBehaviour
             debugText.text = "State: " + currentState + "\n" + "Attacking: " + attacking;
         }
 
-        if(attacking) {
+        if(attacking || dead) {
             moveDirection = 0;
             animator.SetInteger("moveDirection", 0);
             return;
@@ -93,11 +94,12 @@ public class NPCFightController : MonoBehaviour
     {
         while(true)
         {
+            if(dead) yield break;
             if(attacking) {
                 moveDirection = 0;
                 yield return null;
                 continue;
-            };
+            }
             if(Vector2.Distance(transform.position, player.transform.position) < 1.5f)
             {
                 attacking = true;
@@ -139,6 +141,7 @@ public class NPCFightController : MonoBehaviour
     {
         while(true)
         {
+            if(dead) yield break;
             moveDirection = 0;
             yield return null;
         }
@@ -148,6 +151,7 @@ public class NPCFightController : MonoBehaviour
     {
         while(true)
         {
+            if(dead) yield break;
             int playerDirection = (int)Mathf.Sign(player.transform.position.x - transform.position.x);
 
             if(Vector2.Distance(transform.position, player.transform.position) < 4.5f)
@@ -231,12 +235,31 @@ public class NPCFightController : MonoBehaviour
 
     public void takeDamage(float damage) 
     {
-        if(falling) return;
 
+        if(dead) return;
 
+        float value = Random.value;
+        float damageTaken = damage;
 
-        animator.SetTrigger("critical");
-        health = Mathf.Clamp(health - damage, 0, 100);
+        
+        if(value < 0.2) {
+            damageTaken *= 2;
+            animator.SetTrigger("critical");
+        } else if(!falling) {
+            animator.SetTrigger("hit");
+        }
+        
+
+        health = Mathf.Clamp(health - damageTaken, 0, 100);
+        if(health == 0) {
+            animator.SetTrigger("die");
+            dead = true;
+        }
         falling = true;
+    }
+
+    public void endFalling() 
+    {
+        falling = false;
     }
 }
