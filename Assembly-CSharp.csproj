@@ -71,8 +71,10 @@
     <Compile Include="Assets\NPCFightController.cs" />
     <Compile Include="Assets\OnTriggerEnter.cs" />
     <Compile Include="Assets\Interactable.cs" />
+    <Compile Include="Assets\CameraFocusPointTrigger.cs" />
     <Compile Include="Assets\DoubleSlider.cs" />
     <Compile Include="Assets\EnterableDoor.cs" />
+    <Compile Include="Assets\Parallax.cs" />
     <Compile Include="Assets\Fading.cs" />
     <Compile Include="Assets\movement.cs" />
   </ItemGroup>

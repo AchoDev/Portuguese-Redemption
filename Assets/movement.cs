@@ -8,8 +8,11 @@ public class movement : MonoBehaviour
     Animator animator;
     Rigidbody2D rb;
 
+    GameObject scooter;
+
     [SerializeField] float speed;
-    [SerializeField] float sprintSpeed;
+    [SerializeField] float sprintMultiplier;
+    [SerializeField] float driveMultiplier;
 
     bool sprinting = false;
     bool driving = false;
@@ -24,6 +27,7 @@ public class movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        scooter = GameObject.FindWithTag("Scooter");
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         normalXSize = transform.localScale.x;
@@ -43,14 +47,13 @@ public class movement : MonoBehaviour
 
         if(Input.GetKeyDown("e") && driving)
         {
-            driving = false;
-            animator.SetTrigger("exit");
+            StartCoroutine(stopDriving());
         }
     }
 
     void FixedUpdate() 
     {
-        transform.localScale = Vector3.SmoothDamp(
+        transform.localScale = UnityEngine.Vector3.SmoothDamp(
             transform.localScale, 
             new Vector3(currentXSize, transform.localScale.y, transform.localScale.z), 
             ref rotationVelocity,
@@ -59,7 +62,7 @@ public class movement : MonoBehaviour
         
         if(!allowMovement) return;
 
-        rb.velocity = new Vector2(moveDirection * speed * (sprinting ? sprintSpeed : 1) * (driving ? 3 : 1), rb.velocity.y);
+        rb.velocity = new Vector2(moveDirection * speed * (sprinting && !driving ? sprintMultiplier : 1) * (driving ? driveMultiplier : 1), rb.velocity.y);
 
 
         if(Input.GetAxisRaw("Horizontal") != 0)
@@ -75,6 +78,20 @@ public class movement : MonoBehaviour
     public void startDriving()
     {
         StartCoroutine(drive());
+    }
+
+    IEnumerator stopDriving()
+    {
+        animator.SetTrigger("exit");
+        driving = false;
+        yield return new WaitForSeconds(0.4f);
+        scooter.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.1f);
+
+        Vector3 scooterSize = scooter.transform.localScale;
+        float scooterX = transform.localScale.x > 0 ? Mathf.Abs(scooterSize.x) : -Mathf.Abs(scooterSize.x);
+        scooter.transform.localScale = new Vector3(scooterX, scooterSize.y, scooterSize.z);
+
+        scooter.gameObject.SetActive(true);
     }
 
     IEnumerator drive()

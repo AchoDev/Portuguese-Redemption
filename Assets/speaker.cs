@@ -197,12 +197,6 @@ public class speaker : MonoBehaviour
                     buffer += command[1] - command[0];
                 } catch (Exception e) {
                     Debug.LogWarning("Error removing command: " + e.Message);
-                    // Debug.Log(command[0]);
-                    // Debug.Log(command[1]);
-                    // Debug.Log(currentText);
-                    // Debug.Log(formattedText);
-
-
                 }
             }
 
@@ -315,7 +309,6 @@ public class speaker : MonoBehaviour
                 }
 
                 commands.Add(new int[] {startIndex, currentIndex + 1});
-                Debug.Log("wtf adding command??: " + startIndex + " " + currentIndex);
                 yield return StartCoroutine(evaluateCommand(command));
             }
 
@@ -353,7 +346,6 @@ public class speaker : MonoBehaviour
                 string currentDialogue = dialogue[currentLine].dialogue;
                 dialogue[currentLine].dialogue = currentDialogue.Insert(currentIndex + 1, $"<sprite=0>");
                 currentIndex += 10;
-                Debug.Log(currentText);
                 break;
             default:
                 Debug.LogWarning("Unknown command: " + parts[0]);

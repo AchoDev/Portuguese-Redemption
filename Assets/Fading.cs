@@ -48,7 +48,6 @@ public class Fading : MonoBehaviour
             Color c = image.color;
             c.a = f;
             image.color = c;
-            Debug.Log(1 / frameCount);
             yield return new WaitForSeconds(timeBetweenFrames);
         }
     }

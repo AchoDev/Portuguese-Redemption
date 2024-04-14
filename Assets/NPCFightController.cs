@@ -171,7 +171,6 @@ public class NPCFightController : MonoBehaviour
     {
         while(true)
         {
-            // Debug.Log("State: " + currentState);
             yield return StartCoroutine(HoldState());
         }
     }
@@ -209,8 +208,6 @@ public class NPCFightController : MonoBehaviour
             case 1:
 
                 time = Random.Range(100, 2500);
-
-                Debug.Log("Attack state");
                 currentState = State.Attack;
                 currentCoroutine = Attack();
                 StartCoroutine(currentCoroutine);
@@ -218,8 +215,6 @@ public class NPCFightController : MonoBehaviour
             case 2:
 
                 time = Random.Range(500, 2000);
-
-                Debug.Log("defend state");
                 currentState = State.Defend;
                 currentCoroutine = Defend();
                 StartCoroutine(currentCoroutine);

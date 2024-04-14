@@ -17,7 +17,6 @@ public class OnTriggerEnter : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Triggered with " + other.gameObject.tag);
         if(other.gameObject.tag == tag)
         {
             onTriggerEnter.Invoke();

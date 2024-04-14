@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CMVcam
   - Enemy
+  - Scooter
   layers:
   - Default
   - TransparentFX

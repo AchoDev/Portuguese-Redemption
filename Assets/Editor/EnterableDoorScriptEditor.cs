@@ -16,6 +16,8 @@ public class EnterableDoorScriptEditor : Editor
             GameObject dest = myScript.destination.gameObject;
             EnterableDoor destDoor = dest.AddComponent<EnterableDoor>();
             destDoor.destination = myScript.gameObject.transform;
+
+            Debug.Log("Scripts created for target");
         }
     }
 }
