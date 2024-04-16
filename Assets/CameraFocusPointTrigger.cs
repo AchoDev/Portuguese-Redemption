@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CameraFocusPoint)), RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(CameraFocusPoint)), RequireComponent(typeof(BoxCollider2D))]
 public class CameraFocusPointTrigger : MonoBehaviour
 {
     CameraFocusPoint cameraFocus;

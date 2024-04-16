@@ -46,16 +46,23 @@ public class CameraFocusPoint : MonoBehaviour
         );
 
         tempCamera.m_Lens.OrthographicSize = ortho;
-    
-        if(moveCamera && focused) 
+
+        if(focused) 
         {
-            Vector3 target = focusPoint.transform.position;
-            target.x -= (target.x / player.transform.position.x - 1) * movementAmount;
+            mainCamera.gameObject.SetActive(false);
+            if(moveCamera) 
+            {
+                Vector3 target = focusPoint.transform.position;
+                target.x -= (target.x / player.transform.position.x - 1) * movementAmount;
 
-            Debug.Log(target);
+                Debug.Log(target);
 
-            focusPosition = Vector3.SmoothDamp(tempCamera.transform.position, target, ref movementVelocity, 0.55f);
+                focusPosition = Vector3.SmoothDamp(tempCamera.transform.position, target, ref movementVelocity, 0.55f);
+            } else {
+                focusPosition = focusPoint.position;
+            }
         }
+
     }
 
     public void Focus() 

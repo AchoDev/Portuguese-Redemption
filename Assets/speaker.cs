@@ -45,7 +45,7 @@ public class speaker : MonoBehaviour
     [Header("General")]
     [SerializeField] GameObject initiator = null;
     [SerializeField] bool turnTowardsPlayer = false;
-    [SerializeField] bool setAnimatorTalking = false;
+    [SerializeField, Tooltip("Sets animation parameter 'talking' to true")] bool setAnimatorTalking = false;
     [SerializeField, Range(0, 100f)] float timeBetweenLetters = 25;
     float timeBetweenLettersOriginal;
     [SerializeField] UnityEvent onDialogueFinish;
