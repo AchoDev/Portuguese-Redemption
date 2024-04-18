@@ -13,7 +13,9 @@ enum People
     BickNuterus,
     SemranEmadi,
     AA,
-    MohawkMan
+    MohawkMan,
+    LeonVladimirovich,
+    LeoTshirt,
 }
 
 enum Emotion {
@@ -146,10 +148,12 @@ public class speaker : MonoBehaviour
             // animator.SetBool("talking", true);
         }
 
-
-        cameraFocusPoint.Focus(
-            (transform.position + playerMovement.transform.position) / 2
-        );
+        if(focusCamera) 
+        {
+            cameraFocusPoint.Focus(
+                (transform.position + playerMovement.transform.position) / 2
+            );
+        }
 
         setNewImage();
         StartCoroutine(finishAnimation());

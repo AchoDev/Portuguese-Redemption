@@ -1197,6 +1197,147 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &199522799
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1025049678}
+    m_Modifications:
+    - target: {fileID: 1514062154919312533, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_fontSize
+      value: 27.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 1514062154919312533, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 27.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912749852236661436, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_Name
+      value: dialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 3296514031058555780, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 256.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3296514031058555780, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 44
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650556244803709688, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.68181
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650556244803709688, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.68181
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650556244803709688, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.68181
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650556244803709688, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 69.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650556244803709688, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000002861
+      objectReference: {fileID: 0}
+    - target: {fileID: 6421159264032348599, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_margin.z
+      value: -565.65674
+      objectReference: {fileID: 0}
+    - target: {fileID: 7488619526637720820, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -216.70001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -86.2218
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 132.5554
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -4.770691
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -65.778015
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
 --- !u!1 &200412968
 GameObject:
   m_ObjectHideFlags: 0
@@ -6389,7 +6530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -6418,7 +6559,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -6436,6 +6577,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1245713747}
+  - {fileID: 1341307140}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -7547,46 +7689,46 @@ MonoBehaviour:
   onDialogueFinish:
     m_PersistentCalls:
       m_Calls: []
-  focusCamera: 1
+  focusCamera: 0
   cameraSpeed: 1
   ortho: 2.5
   dialogue:
-  - name: 2
+  - name: 5
     dialogue: Good morning sir, welcome to WcRonalds
     emotion: 0
-  - name: 2
+  - name: 6
     dialogue: Hello
     emotion: 0
-  - name: 2
+  - name: 6
     dialogue: ............................................................
     emotion: 0
-  - name: 2
+  - name: 5
     dialogue: ...uhhh... would y-you like to order some-
-    emotion: 0
-  - name: 2
+    emotion: 4
+  - name: 6
     dialogue: I want a job
     emotion: 0
-  - name: 2
+  - name: 5
     dialogue: A job?
-    emotion: 0
-  - name: 2
+    emotion: 7
+  - name: 6
     dialogue: Yes, I feel like becoming an alpha sigma male so now I need to grind
     emotion: 0
-  - name: 2
+  - name: 5
     dialogue: A-Alright okay... you can speak the store owner, he is currently here
     emotion: 0
-  - name: 2
+  - name: 6
     dialogue: Okay cool, when can I start working to get money?
     emotion: 0
-  - name: 2
+  - name: 5
     dialogue: ...you need to first get the job before you can work
-    emotion: 0
-  - name: 2
+    emotion: 7
+  - name: 6
     dialogue: Okay, so how do I get the job? Can I buy it?
     emotion: 0
-  - name: 2
+  - name: 5
     dialogue: ...huh uhhh... lemme just get the guy
-    emotion: 0
+    emotion: 4
 --- !u!61 &1171496822
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8152,7 +8294,7 @@ RectTransform:
   m_GameObject: {fileID: 1245713746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7425, y: 1.7425, z: 1.7425}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1025049678}
@@ -8904,6 +9046,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!224 &1341307140 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8503232039567555758, guid: 17e88c8780547804fa76aa88c3ab0ae0, type: 3}
+  m_PrefabInstance: {fileID: 199522799}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1359490535
 GameObject:
   m_ObjectHideFlags: 0
