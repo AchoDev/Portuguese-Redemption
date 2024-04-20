@@ -32,7 +32,7 @@ public class CutsceneStep
         cameraFocusPoint = target;
     }
 
-    public void act() {
+    public IEnumerator act() {
         switch(type) {
             case CutsceneStepType.CameraFocusPoint:
                 cameraFocusPoint.cameraSpeed = cameraSpeed;
@@ -40,9 +40,14 @@ public class CutsceneStep
                 cameraFocusPoint.Focus(focusPoint.position);
                 break;
             case CutsceneStepType.SetAnimatorTrigger:
-                animator.SetTrigger(triggerName);
+                animator.SetTrigger(triggerName );
                 break;
         }
+
+        if(!isBlocking) {
+            
+        }
+        yield return null;
 
     }
 }
@@ -68,16 +73,17 @@ public class Cutscene : MonoBehaviour
         steps.Add(new CutsceneStep(type));
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void Play()
     {
-        
+        StartCoroutine(PlayCoroutine());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator PlayCoroutine()
     {
-        
+        foreach(CutsceneStep step in steps)
+        {
+            yield return StartCoroutine(step.act());
+        }
     }
 }
 
@@ -86,7 +92,6 @@ public class CutsceneEditor : Editor
 {
 
     CutsceneStepType selectedStep = CutsceneStepType.CameraFocusPoint;
-    string[] stepOptions = new string[] {"CameraFocusPoint", "CameraMove", "SetAnimatorBool", "SetAnimatorAndMove", "StartDialogue"};
 
     
     public override void OnInspectorGUI()
@@ -111,7 +116,7 @@ public class CutsceneEditor : Editor
             if(!isBlocking.boolValue)
             {
                 SerializedProperty duration = currentStep.FindPropertyRelative("duration");
-                duration.floatValue = EditorGUILayout.FloatField("Duration", currentStep.FindPropertyRelative("duration").floatValue);
+                duration.floatValue = EditorGUILayout.Slider("Duration (ms)", currentStep.FindPropertyRelative("duration").floatValue, 0, 5000);
             }
 
             switch(stepType)

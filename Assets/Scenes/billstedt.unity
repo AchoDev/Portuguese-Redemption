@@ -818,6 +818,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b01a5d0cbe719498c0577cba4cf146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  steps:
+  - duration: 2342
+    isBlocking: 1
+    type: 0
+    focusPoint: {fileID: 0}
+    cameraSpeed: 0
+    ortho: 0
+    animator: {fileID: 0}
+    triggerName: 
+  - duration: 0
+    isBlocking: 1
+    type: 0
+    focusPoint: {fileID: 0}
+    cameraSpeed: 0
+    ortho: -10.39
+    animator: {fileID: 0}
+    triggerName: 
+  - duration: 0
+    isBlocking: 1
+    type: 2
+    focusPoint: {fileID: 0}
+    cameraSpeed: 0
+    ortho: 0
+    animator: {fileID: 0}
+    triggerName: 
 --- !u!1 &165787499
 GameObject:
   m_ObjectHideFlags: 0
