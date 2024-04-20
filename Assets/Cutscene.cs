@@ -1,43 +1,71 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
-[System.Serializable]
-public abstract class CutsceneStep
+[Serializable]
+public class CutsceneStep
 {
-    float duration;
-    public bool folded;
 
-    abstract public void act();
+    public float duration;
+    public bool isBlocking = true;
+    public CutsceneStepType type;
+
+    // CameraFocusPoint
+    CameraFocusPoint cameraFocusPoint;
+    public Transform focusPoint;
+    public float cameraSpeed;
+    public float ortho;
+
+    // SetAnimatorBool
+    public Animator animator;
+    public string triggerName;
+
+    public CutsceneStep(CutsceneStepType type)
+    {
+        this.type = type;
+    }
+
+    public void SetCameraFocusPoint(CameraFocusPoint target) {
+        cameraFocusPoint = target;
+    }
+
+    public void act() {
+        switch(type) {
+            case CutsceneStepType.CameraFocusPoint:
+                cameraFocusPoint.cameraSpeed = cameraSpeed;
+                cameraFocusPoint.ortho = ortho;
+                cameraFocusPoint.Focus(focusPoint.position);
+                break;
+            case CutsceneStepType.SetAnimatorTrigger:
+                animator.SetTrigger(triggerName);
+                break;
+        }
+
+    }
 }
 
-[System.Serializable]
-public class CameraFocusPointStep : CutsceneStep
+[Serializable]
+public enum CutsceneStepType
 {
-    public Transform focusPoint;
-    public CameraFocusPoint cameraFocusPoint;
-
-    public override void act()
-    {
-        cameraFocusPoint.Focus(focusPoint.position);
-    }
+    CameraFocusPoint,
+    CameraMove,
+    SetAnimatorTrigger,
+    SetAnimatorAndMove,
+    StartDialogue
 }
 
 
 public class Cutscene : MonoBehaviour
 {
-
+    
     [SerializeField] List<CutsceneStep> steps = new List<CutsceneStep>();
 
-    public void AddStep(CutsceneStep cutsceneStep)
+    public void AddStep(CutsceneStepType type)
     {
-        steps.Add(cutsceneStep);
-    }
-
-    public List<CutsceneStep> GetSteps()
-    {
-        return steps;
+        steps.Add(new CutsceneStep(type));
     }
 
     // Start is called before the first frame update
@@ -52,3 +80,88 @@ public class Cutscene : MonoBehaviour
         
     }
 }
+
+[CustomEditor(typeof(Cutscene))]
+public class CutsceneEditor : Editor
+{
+
+    CutsceneStepType selectedStep = CutsceneStepType.CameraFocusPoint;
+    string[] stepOptions = new string[] {"CameraFocusPoint", "CameraMove", "SetAnimatorBool", "SetAnimatorAndMove", "StartDialogue"};
+
+    
+    public override void OnInspectorGUI()
+    {
+        // DrawDefaultInspector();
+        Cutscene cutscene = (Cutscene)target;
+        SerializedProperty steps = serializedObject.FindProperty("steps");
+
+        EditorGUILayout.LabelField("Cutscene steps", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField($"Number of steps: {steps.arraySize}");
+
+        for(int i = 0; i < steps.arraySize; i++)
+        {
+            SerializedProperty currentStep = steps.GetArrayElementAtIndex(i);
+            CutsceneStepType stepType = (CutsceneStepType)currentStep.FindPropertyRelative("type").enumValueIndex;
+
+            GUILayout.BeginVertical($"{stepType.ToString()} (Step {i})", "window");
+            
+            SerializedProperty isBlocking = currentStep.FindPropertyRelative("isBlocking");
+            isBlocking.boolValue = EditorGUILayout.Toggle("Is blocking", isBlocking.boolValue);
+
+            if(!isBlocking.boolValue)
+            {
+                SerializedProperty duration = currentStep.FindPropertyRelative("duration");
+                duration.floatValue = EditorGUILayout.FloatField("Duration", currentStep.FindPropertyRelative("duration").floatValue);
+            }
+
+            switch(stepType)
+            {
+                case CutsceneStepType.CameraFocusPoint:
+                    SerializedProperty focusPoint = currentStep.FindPropertyRelative("focusPoint");
+                    SerializedProperty ortho = currentStep.FindPropertyRelative("ortho");
+                    SerializedProperty cameraSpeed = currentStep.FindPropertyRelative("cameraSpeed");
+                    focusPoint.boxedValue = EditorGUILayout.ObjectField("Focus point", (Transform)focusPoint.boxedValue, typeof(Transform), true) as Transform;
+                    ortho.floatValue = EditorGUILayout.FloatField("Ortho", ortho.floatValue);
+                    cameraSpeed.floatValue = EditorGUILayout.FloatField("Camera speed", cameraSpeed.floatValue);
+                    
+                    break;
+                // case "CameraMoveStep":
+                //     // CameraMoveStep cameraMoveStep = (CameraMoveStep)step;
+                //     break;
+                case CutsceneStepType.SetAnimatorTrigger:
+                    SerializedProperty animator = currentStep.FindPropertyRelative("animator");
+                    SerializedProperty triggerName = currentStep.FindPropertyRelative("triggerName");
+                    animator.objectReferenceValue = EditorGUILayout.ObjectField("Animator", animator.objectReferenceValue, typeof(Animator), true) as Animator;
+                    triggerName.stringValue = EditorGUILayout.TextField("Trigger name", triggerName.stringValue);
+                    break;
+                // case "SetAnimatorAndMoveStep":
+                //     // SetAnimatorAndMoveStep setAnimatorAndMoveStep = (SetAnimatorAndMoveStep)step;
+                //     break;
+                // case "StartDialogueStep":
+                //     // StartDialogueStep startDialogueStep = (StartDialogueStep)step;
+                //     break;
+                default:
+                    GUILayout.BeginVertical("window");
+                    GUILayout.Label($"Step called '{currentStep}' does not have defined editor layout :(");
+                    break;
+            }
+
+            if(GUILayout.Button("Remove"))
+            {
+                steps.DeleteArrayElementAtIndex(i);
+            }
+
+            GUILayout.EndVertical();
+
+            GUILayout.Space(10);
+        }
+
+        selectedStep = (CutsceneStepType)EditorGUILayout.EnumPopup("Select step", selectedStep);
+        if(GUILayout.Button("Add step"))
+        {
+            cutscene.AddStep(selectedStep);
+        }
+
+        serializedObject.ApplyModifiedProperties();
+    }
+}      
