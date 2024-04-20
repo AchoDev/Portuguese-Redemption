@@ -68,6 +68,7 @@
     <Compile Include="Assets\CameraFocusPoint.cs" />
     <Compile Include="Assets\speaker.cs" />
     <Compile Include="Assets\FightConductor.cs" />
+    <Compile Include="Assets\Cutscene.cs" />
     <Compile Include="Assets\NPCFightController.cs" />
     <Compile Include="Assets\OnTriggerEnter.cs" />
     <Compile Include="Assets\Interactable.cs" />
