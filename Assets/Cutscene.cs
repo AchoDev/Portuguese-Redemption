@@ -33,6 +33,10 @@ public class CutsceneStep
     public Vector3 moveTargetDelta;
     public float speed = 1;
 
+    // StartDialogue
+    public speaker dialogue;
+
+
     public CutsceneStep(CutsceneStepType type)
     {
         this.type = type;
@@ -48,7 +52,8 @@ public class CutsceneStep
 
                 cameraFocusPoint.cameraSpeed = cameraSpeed;
                 cameraFocusPoint.ortho = ortho;
-                cameraFocusPoint.Focus(focusPoint.position);
+                cameraFocusPoint.focusPoint = focusPoint;
+                cameraFocusPoint.Focus();
 
                 if(isBlocking) {
                     yield return new WaitForSeconds(cameraSpeed / 1000);
@@ -69,7 +74,13 @@ public class CutsceneStep
                     moveTarget.position = Vector3.MoveTowards(moveTarget.position, originalPosition + moveTargetDelta, speed * Time.deltaTime);
                     yield return null;
                 }
-
+                break;
+            case CutsceneStepType.Wait:
+                yield return new WaitForSeconds(duration / 1000);
+                break;
+            case CutsceneStepType.StartDialogue:
+                dialogue.talkByInteracting = false;
+                dialogue.initiateTalk();
                 break;
         }
 
@@ -80,8 +91,7 @@ public class CutsceneStep
         switch(type) {
             case CutsceneStepType.CameraFocusPoint:
                 return @$"
-                Focus camera on '{focusPoint.name}'
-                focus camera: {cameraFocusPoint}";
+                Focus camera on '{focusPoint.name}'";
                 
             case CutsceneStepType.SetAnimatorTrigger:
                 return $"Set animator trigger '{triggerName}' on {animator.name}";
@@ -94,7 +104,7 @@ public class CutsceneStep
                 Target position: {originalPosition + moveTargetDelta}
                 Remaning Distance: {Vector3.Distance(moveTarget.position, originalPosition + moveTargetDelta)}";
             default:
-                return "Unknown step type";
+                return $"No debug information available for step type '{type}' :(";
         }
     }
 }
@@ -107,6 +117,7 @@ public enum CutsceneStepType
     StartDialogue,
     SetGameobjectActive,
     MoveGameobject,
+    Wait,
 }
 
 
@@ -264,6 +275,18 @@ public class CutsceneEditor : Editor
                     GUILayout.Label($"Step called '{stepType}' does not have defined editor layout :(");
                     break;
             }
+
+
+            GUILayout.BeginHorizontal();
+            if(GUILayout.Button("Move up"))
+            {
+                steps.MoveArrayElement(i, i - 1);
+            }
+            if(GUILayout.Button("Move down"))
+            {
+                steps.MoveArrayElement(i, i + 1);
+            }
+            GUILayout.EndHorizontal();
 
             if(GUILayout.Button("Remove"))
             {

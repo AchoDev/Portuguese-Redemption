@@ -65,7 +65,9 @@ public class CameraFocusPoint : MonoBehaviour
 
                 focusPosition = Vector3.SmoothDamp(tempCamera.transform.position, target, ref movementVelocity, 0.55f);
             } else {
-                focusPosition = focusPoint.position;
+                if(focusPoint != null) {
+                    focusPosition = focusPoint.position;
+                }
             }
         }
 
@@ -104,6 +106,7 @@ public class CameraFocusPoint : MonoBehaviour
     public void Unfocus() 
     {
         focused = false;
+        if(tempCamera == null) return;
         tempCamera.gameObject.SetActive(false);
         mainCamera.gameObject.SetActive(true);
     }

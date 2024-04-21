@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Xml.Serialization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -57,6 +58,8 @@ public class speaker : MonoBehaviour
     [SerializeField] bool focusCamera = true;
     [SerializeField, Range(0.1f, 5f)] float cameraSpeed = 1f;
     [SerializeField, Range(0.1f, 5)] float ortho = 2.5f;
+
+    public bool talkByInteracting = true;
 
     [Space(10)]
     [Header("Dialogue")]
@@ -117,6 +120,7 @@ public class speaker : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if(!talkByInteracting) return;
         if(other.CompareTag("Player"))
         {
             playerInTrigger = true;
@@ -125,6 +129,7 @@ public class speaker : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
+        if(!talkByInteracting) return;
         if(other.CompareTag("Player"))
         {
             playerInTrigger = false;
@@ -132,7 +137,7 @@ public class speaker : MonoBehaviour
         }
     }
 
-    void initiateTalk()
+    public void initiateTalk()
     {
         talking = true;
         canvasAnimator.SetBool("speaking", true);
