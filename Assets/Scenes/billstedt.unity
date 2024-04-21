@@ -5361,9 +5361,12 @@ MonoBehaviour:
   ortho: 2.5
   talkByInteracting: 0
   dialogue:
-  - name: 0
-    dialogue: You...
-    emotion: 0
+  - name: 5
+    dialogue: Boss? .....re's this.... and he..... speak wi.-.....
+    emotion: 4
+  - name: 5
+    dialogue: Boss? .....re's this.... and he..... speak wi.-.....
+    emotion: 4
 --- !u!61 &812229096
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12350,7 +12353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1782451250
 Transform:
   m_ObjectHideFlags: 0
