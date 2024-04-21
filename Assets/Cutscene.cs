@@ -16,12 +16,22 @@ public class CutsceneStep
     // CameraFocusPoint
     CameraFocusPoint cameraFocusPoint;
     public Transform focusPoint;
-    public float cameraSpeed;
-    public float ortho;
+    public float cameraSpeed = 1;
+    public float ortho = 10;
 
     // SetAnimatorBool
     public Animator animator;
     public string triggerName;
+
+    // SetGameobjectActive
+    public GameObject setActiveTarget;
+    public bool active = true;
+
+    // MoveGameobject
+    public Vector3 originalPosition;
+    public Transform moveTarget;
+    public Vector3 moveTargetDelta;
+    public float speed = 1;
 
     public CutsceneStep(CutsceneStepType type)
     {
@@ -35,20 +45,57 @@ public class CutsceneStep
     public IEnumerator act() {
         switch(type) {
             case CutsceneStepType.CameraFocusPoint:
+
                 cameraFocusPoint.cameraSpeed = cameraSpeed;
                 cameraFocusPoint.ortho = ortho;
                 cameraFocusPoint.Focus(focusPoint.position);
+
+                if(isBlocking) {
+                    yield return new WaitForSeconds(cameraSpeed / 1000);
+                } else {
+                    yield return new WaitForSeconds(duration / 1000);
+                }
+
                 break;
             case CutsceneStepType.SetAnimatorTrigger:
                 animator.SetTrigger(triggerName );
                 break;
+            case CutsceneStepType.SetGameobjectActive:
+                setActiveTarget.SetActive(active);
+                break;
+            case CutsceneStepType.MoveGameobject:
+                originalPosition = new Vector3(moveTarget.position.x, moveTarget.position.y, moveTarget.position.z);
+                while(Vector3.Distance(moveTarget.position, originalPosition + moveTargetDelta) > 0.1f) {
+                    moveTarget.position = Vector3.MoveTowards(moveTarget.position, originalPosition + moveTargetDelta, speed * Time.deltaTime);
+                    yield return null;
+                }
+
+                break;
         }
 
-        if(!isBlocking) {
-            
-        }
         yield return null;
+    }
 
+    public string DebugInformation() {
+        switch(type) {
+            case CutsceneStepType.CameraFocusPoint:
+                return @$"
+                Focus camera on '{focusPoint.name}'
+                focus camera: {cameraFocusPoint}";
+                
+            case CutsceneStepType.SetAnimatorTrigger:
+                return $"Set animator trigger '{triggerName}' on {animator.name}";
+            case CutsceneStepType.SetGameobjectActive:
+                return $"Set {setActiveTarget.name} active to {active}";
+            case CutsceneStepType.MoveGameobject:
+                return  @$"
+                Move {moveTarget.name} by {moveTargetDelta} at speed {speed}
+                Current position: {moveTarget.position}
+                Target position: {originalPosition + moveTargetDelta}
+                Remaning Distance: {Vector3.Distance(moveTarget.position, originalPosition + moveTargetDelta)}";
+            default:
+                return "Unknown step type";
+        }
     }
 }
 
@@ -56,10 +103,10 @@ public class CutsceneStep
 public enum CutsceneStepType
 {
     CameraFocusPoint,
-    CameraMove,
     SetAnimatorTrigger,
-    SetAnimatorAndMove,
-    StartDialogue
+    StartDialogue,
+    SetGameobjectActive,
+    MoveGameobject,
 }
 
 
@@ -67,22 +114,65 @@ public class Cutscene : MonoBehaviour
 {
     
     [SerializeField] List<CutsceneStep> steps = new List<CutsceneStep>();
+    [HideInInspector] public bool playing;
+    [HideInInspector] public int currentIndex;
+    [HideInInspector] public CutsceneStep currentStep;
+
+
+    CameraFocusPoint cameraFocusPoint;
 
     public void AddStep(CutsceneStepType type)
     {
-        steps.Add(new CutsceneStep(type));
+        CutsceneStep step = new CutsceneStep(type);
+        step.SetCameraFocusPoint(cameraFocusPoint);
+        steps.Add(step);
     }
 
     public void Play()
     {
+        if(playing) return;
+        SetSteps();
         StartCoroutine(PlayCoroutine());
+        playing = true;
     }
 
     IEnumerator PlayCoroutine()
     {
         foreach(CutsceneStep step in steps)
         {
+            currentStep = step;
             yield return StartCoroutine(step.act());
+            currentIndex++;
+        }
+    }
+
+    void Start()
+    {
+        
+        // cameraFocusPoint.ForceStart();
+    }
+
+    public void ForceReset() {
+        Reset();
+    }
+
+    void Reset() {
+        // create chidl obj
+        if(GameObject.Find("Scripts") != null) {
+            DestroyImmediate(GameObject.Find("Scripts"));
+        }
+
+        GameObject obj = new GameObject("Scripts");
+        cameraFocusPoint = obj.AddComponent<CameraFocusPoint>();
+        obj.transform.parent = transform;
+    }
+
+    void SetSteps() {
+        cameraFocusPoint = GetComponentInChildren<CameraFocusPoint>();
+        foreach(CutsceneStep step in steps) {
+            Debug.Log(cameraFocusPoint);
+            Debug.Log("THIS IS CAMERA FOCUS POITN");
+            step.SetCameraFocusPoint(cameraFocusPoint);
         }
     }
 }
@@ -97,7 +187,14 @@ public class CutsceneEditor : Editor
     public override void OnInspectorGUI()
     {
         // DrawDefaultInspector();
+
         Cutscene cutscene = (Cutscene)target;
+
+        if(GUILayout.Button("Reset"))
+        {
+            cutscene.ForceReset();
+        }
+
         SerializedProperty steps = serializedObject.FindProperty("steps");
 
         EditorGUILayout.LabelField("Cutscene steps", EditorStyles.boldLabel);
@@ -145,9 +242,26 @@ public class CutsceneEditor : Editor
                 // case "StartDialogueStep":
                 //     // StartDialogueStep startDialogueStep = (StartDialogueStep)step;
                 //     break;
+
+                case CutsceneStepType.SetGameobjectActive:
+                    SerializedProperty target = currentStep.FindPropertyRelative("setActiveTarget");
+                    SerializedProperty active = currentStep.FindPropertyRelative("active");
+                    target.objectReferenceValue = EditorGUILayout.ObjectField("Target", target.objectReferenceValue, typeof(GameObject), true) as GameObject;
+                    active.boolValue = EditorGUILayout.Toggle("Active", active.boolValue);
+                    break;
+
+                case CutsceneStepType.MoveGameobject:
+                    SerializedProperty moveTarget = currentStep.FindPropertyRelative("moveTarget");
+                    SerializedProperty moveTargetDelta = currentStep.FindPropertyRelative("moveTargetDelta");
+                    SerializedProperty speed = currentStep.FindPropertyRelative("speed");
+                    moveTarget.objectReferenceValue = EditorGUILayout.ObjectField("Move target", moveTarget.objectReferenceValue, typeof(Transform), true) as Transform;
+                    moveTargetDelta.vector3Value = EditorGUILayout.Vector3Field("Move target delta", moveTargetDelta.vector3Value);
+                    speed.floatValue = EditorGUILayout.FloatField("Speed", speed.floatValue);
+                    break;
+
                 default:
-                    GUILayout.BeginVertical("window");
-                    GUILayout.Label($"Step called '{currentStep}' does not have defined editor layout :(");
+                    // GUILayout.BeginVertical("window");
+                    GUILayout.Label($"Step called '{stepType}' does not have defined editor layout :(");
                     break;
             }
 
@@ -165,6 +279,19 @@ public class CutsceneEditor : Editor
         if(GUILayout.Button("Add step"))
         {
             cutscene.AddStep(selectedStep);
+        }
+
+        GUILayout.Space(10);
+        if(GUILayout.Button("Play"))
+        {
+            cutscene.Play();
+        }
+
+        if(cutscene.playing) {
+            GUILayout.Label("Playing...");
+            GUILayout.Label($"Current index: {cutscene.currentIndex}");
+            GUILayout.Label($"Current step: {cutscene.currentStep.type}");
+            GUILayout.Label($"{cutscene.currentStep.DebugInformation()}");
         }
 
         serializedObject.ApplyModifiedProperties();

@@ -23,9 +23,14 @@ public class CameraFocusPoint : MonoBehaviour
     [Range(0.1f, 5)]public float ortho = 2.5f;
     public CinemachineBlendDefinition.Style transitionType = CinemachineBlendDefinition.Style.EaseInOut;
 
+    // public void ForceStart() {
+    //     Start();
+    // }
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+
         player = GameObject.FindWithTag("Player");
 
         brain = GameObject.FindWithTag("MainCamera").GetComponent<CinemachineBrain>();
@@ -34,21 +39,22 @@ public class CameraFocusPoint : MonoBehaviour
         tempCamera = new GameObject("focus-point CMVcam")
             .AddComponent<CinemachineVirtualCamera>();
         tempCamera.gameObject.SetActive(false);
+        tempCamera.tag = "TempCMVcam";
     }
 
     void Update()
     {
-        tempCamera.transform.position = focusPosition;
-        tempCamera.transform.position = new Vector3(
-            tempCamera.transform.position.x, 
-            tempCamera.transform.position.y, 
-            mainCamera.transform.position.z
-        );
-
-        tempCamera.m_Lens.OrthographicSize = ortho;
-
         if(focused) 
         {
+            tempCamera.transform.position = focusPosition;
+            tempCamera.transform.position = new Vector3(
+                tempCamera.transform.position.x, 
+                tempCamera.transform.position.y, 
+                mainCamera.transform.position.z
+            );
+
+            tempCamera.m_Lens.OrthographicSize = ortho;
+        
             mainCamera.gameObject.SetActive(false);
             if(moveCamera) 
             {
@@ -72,11 +78,24 @@ public class CameraFocusPoint : MonoBehaviour
 
     public void Focus(Vector3 position) 
     {
+
         focusPosition = position;
         focused = true;
 
         brain.m_DefaultBlend.m_Time = cameraSpeed;
         brain.m_DefaultBlend.m_Style = transitionType;
+
+
+        Debug.Log(mainCamera);
+        if(!mainCamera.gameObject.activeSelf) 
+        {
+            // fina all cams with temp tag
+            GameObject[] tempCams = GameObject.FindGameObjectsWithTag("TempCMVcam");
+            foreach(GameObject cam in tempCams) 
+            {
+                cam.SetActive(false);
+            }
+        }
 
         tempCamera.gameObject.SetActive(true);
         mainCamera.gameObject.SetActive(false);

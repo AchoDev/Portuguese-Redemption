@@ -25,7 +25,9 @@ public class CameraFocusPointTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            cameraFocus.Unfocus();
+            if(cameraFocus != null) {
+                cameraFocus.Unfocus();
+            }
         }
     }
     

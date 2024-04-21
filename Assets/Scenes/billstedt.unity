@@ -819,30 +819,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   steps:
-  - duration: 2342
+  - duration: 0
     isBlocking: 1
+    type: 4
+    focusPoint: {fileID: 0}
+    cameraSpeed: 1
+    ortho: 10
+    animator: {fileID: 0}
+    triggerName: 
+    setActiveTarget: {fileID: 0}
+    active: 1
+    originalPosition: {x: 0, y: 0, z: 0}
+    moveTarget: {fileID: 1171496817}
+    moveTargetDelta: {x: 2, y: 0, z: 0}
+    speed: 2
+  - duration: 0
+    isBlocking: 1
+    type: 3
+    focusPoint: {fileID: 0}
+    cameraSpeed: 1
+    ortho: 10
+    animator: {fileID: 0}
+    triggerName: 
+    setActiveTarget: {fileID: 1601574933}
+    active: 1
+    originalPosition: {x: 0, y: 0, z: 0}
+    moveTarget: {fileID: 0}
+    moveTargetDelta: {x: 0, y: 0, z: 0}
+    speed: 1
+  - duration: 0
+    isBlocking: 1
+    type: 0
+    focusPoint: {fileID: 1601574934}
+    cameraSpeed: 1
+    ortho: 5
+    animator: {fileID: 0}
+    triggerName: 
+    setActiveTarget: {fileID: 0}
+    active: 1
+    originalPosition: {x: 0, y: 0, z: 0}
+    moveTarget: {fileID: 0}
+    moveTargetDelta: {x: 0, y: 0, z: 0}
+    speed: 1
+  playing: 0
+  currentIndex: 0
+  currentStep:
+    duration: 0
+    isBlocking: 0
     type: 0
     focusPoint: {fileID: 0}
     cameraSpeed: 0
     ortho: 0
     animator: {fileID: 0}
     triggerName: 
-  - duration: 0
-    isBlocking: 1
-    type: 0
-    focusPoint: {fileID: 0}
-    cameraSpeed: 0
-    ortho: -10.39
-    animator: {fileID: 0}
-    triggerName: 
-  - duration: 0
-    isBlocking: 1
-    type: 2
-    focusPoint: {fileID: 0}
-    cameraSpeed: 0
-    ortho: 0
-    animator: {fileID: 0}
-    triggerName: 
+    setActiveTarget: {fileID: 0}
+    active: 0
+    originalPosition: {x: 0, y: 0, z: 0}
+    moveTarget: {fileID: 0}
+    moveTargetDelta: {x: 0, y: 0, z: 0}
+    speed: 0
 --- !u!1 &165787499
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,7 +966,7 @@ Transform:
   m_GameObject: {fileID: 165787499}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28, y: 3.19, z: -12.27}
+  m_LocalPosition: {x: 121.49, y: 179.29999, z: -14.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4103,7 +4138,7 @@ Transform:
   m_GameObject: {fileID: 698893550}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28, y: 3.19, z: -12.27}
+  m_LocalPosition: {x: 121.49, y: 179.29999, z: -14.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4929,7 +4964,7 @@ Transform:
   m_GameObject: {fileID: 787248721}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28, y: 1.9, z: -2.27}
+  m_LocalPosition: {x: 121.49, y: 178.01, z: -4.71}
   m_LocalScale: {x: 0.11841619, y: 0.11841619, z: 0.11841619}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10630,7 +10665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1601574934
 Transform:
   m_ObjectHideFlags: 0
