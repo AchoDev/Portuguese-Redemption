@@ -17,6 +17,7 @@ enum People
     MohawkMan,
     LeonVladimirovich,
     LeoTshirt,
+    Mystery,
 }
 
 enum Emotion {
@@ -284,7 +285,21 @@ public class speaker : MonoBehaviour
     {
         Message message = dialogue[currentLine];
 
-        nameBox.text = SplitCamelCase(message.name.ToString());
+        switch(message.name) {
+            case People.Mystery:
+                nameBox.text = "???";
+                break;
+            case People.LeoSuit:
+                nameBox.text = "Leo Poßinio";
+                break;
+            case People.LeoTshirt:
+                nameBox.text = "Leo Poßinio";
+                break;
+            default:
+                nameBox.text = SplitCamelCase(message.name.ToString());
+                break;
+        }
+
 
         GameObject parent = canvasAnimator.transform.Find($"Image/{message.name.ToString()}").gameObject;
 
