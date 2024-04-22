@@ -35,6 +35,10 @@ public class CutsceneStep
 
     // StartDialogue
     public speaker dialogue;
+    public float timeBetweenLetters = 25;
+
+    // Wait 
+    public float waitTime;
 
 
     public CutsceneStep(CutsceneStepType type)
@@ -80,7 +84,12 @@ public class CutsceneStep
                 break;
             case CutsceneStepType.StartDialogue:
                 dialogue.talkByInteracting = false;
+                dialogue.timeBetweenLetters = timeBetweenLetters;
                 dialogue.initiateTalk();
+
+                while(dialogue.isTalking()) {
+                    yield return null;
+                }
                 break;
         }
 
@@ -268,6 +277,18 @@ public class CutsceneEditor : Editor
                     moveTarget.objectReferenceValue = EditorGUILayout.ObjectField("Move target", moveTarget.objectReferenceValue, typeof(Transform), true) as Transform;
                     moveTargetDelta.vector3Value = EditorGUILayout.Vector3Field("Move target delta", moveTargetDelta.vector3Value);
                     speed.floatValue = EditorGUILayout.FloatField("Speed", speed.floatValue);
+                    break;
+
+                case CutsceneStepType.StartDialogue:
+                    SerializedProperty dialogue = currentStep.FindPropertyRelative("dialogue");
+                    SerializedProperty timeBetweenLetters = currentStep.FindPropertyRelative("timeBetweenLetters");
+                    dialogue.objectReferenceValue = EditorGUILayout.ObjectField("Dialogue", dialogue.objectReferenceValue, typeof(speaker), true) as speaker;
+                    timeBetweenLetters.floatValue = EditorGUILayout.Slider("Time between letters (ms)", timeBetweenLetters.floatValue, 0, 100);
+                    break;
+
+                case CutsceneStepType.Wait:
+                    SerializedProperty waitTime = currentStep.FindPropertyRelative("waitTime");
+                    waitTime.floatValue = EditorGUILayout.FloatField("Wait time (ms)", waitTime.floatValue);
                     break;
 
                 default:
