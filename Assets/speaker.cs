@@ -18,6 +18,7 @@ enum People
     LeonVladimirovich,
     LeoTshirt,
     Mystery,
+    RamzaHoholla,
 }
 
 enum Emotion {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -41,6 +42,11 @@ public class CutsceneStep
     public float waitTime;
 
 
+    // PlaySound
+    public string soundName;
+    public float soundVolume = 0.5f;
+    SoundManager soundManager;
+
     public CutsceneStep(CutsceneStepType type)
     {
         this.type = type;
@@ -48,6 +54,10 @@ public class CutsceneStep
 
     public void SetCameraFocusPoint(CameraFocusPoint target) {
         cameraFocusPoint = target;
+    }
+
+    public void SetSoundManager(SoundManager target) {
+        soundManager = target;
     }
 
     public IEnumerator act() {
@@ -80,7 +90,7 @@ public class CutsceneStep
                 }
                 break;
             case CutsceneStepType.Wait:
-                yield return new WaitForSeconds(duration / 1000);
+                yield return new WaitForSeconds(waitTime);
                 break;
             case CutsceneStepType.StartDialogue:
                 dialogue.talkByInteracting = false;
@@ -90,6 +100,10 @@ public class CutsceneStep
                 while(dialogue.isTalking()) {
                     yield return null;
                 }
+                break;
+
+            case CutsceneStepType.PlaySound:
+                soundManager.Play(soundName, soundVolume);
                 break;
         }
 
@@ -127,6 +141,7 @@ public enum CutsceneStepType
     SetGameobjectActive,
     MoveGameobject,
     Wait,
+    PlaySound,
 }
 
 
@@ -140,6 +155,7 @@ public class Cutscene : MonoBehaviour
 
 
     CameraFocusPoint cameraFocusPoint;
+    SoundManager soundManager;
 
     public void AddStep(CutsceneStepType type)
     {
@@ -168,7 +184,7 @@ public class Cutscene : MonoBehaviour
 
     void Start()
     {
-        
+        soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
         // cameraFocusPoint.ForceStart();
     }
 
@@ -191,8 +207,8 @@ public class Cutscene : MonoBehaviour
         cameraFocusPoint = GetComponentInChildren<CameraFocusPoint>();
         foreach(CutsceneStep step in steps) {
             Debug.Log(cameraFocusPoint);
-            Debug.Log("THIS IS CAMERA FOCUS POITN");
             step.SetCameraFocusPoint(cameraFocusPoint);
+            step.SetSoundManager(soundManager);
         }
     }
 }
@@ -288,7 +304,14 @@ public class CutsceneEditor : Editor
 
                 case CutsceneStepType.Wait:
                     SerializedProperty waitTime = currentStep.FindPropertyRelative("waitTime");
-                    waitTime.floatValue = EditorGUILayout.FloatField("Wait time (ms)", waitTime.floatValue);
+                    waitTime.floatValue = EditorGUILayout.Slider("Wait time (s)", waitTime.floatValue, 0, 10);
+                    break;
+
+                case CutsceneStepType.PlaySound:
+                    SerializedProperty soundName = currentStep.FindPropertyRelative("soundName");
+                    SerializedProperty soundVolume = currentStep.FindPropertyRelative("soundVolume");
+                    soundName.stringValue = EditorGUILayout.TextField("Sound name", soundName.stringValue);
+                    soundVolume.floatValue = EditorGUILayout.Slider("Volume", soundVolume.floatValue, 0, 1);
                     break;
 
                 default:

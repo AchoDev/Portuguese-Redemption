@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Scooter
   - TempCMVcam
+  - SoundManager
   layers:
   - Default
   - TransparentFX
