@@ -71,6 +71,7 @@
     <Compile Include="Assets\Cutscene.cs" />
     <Compile Include="Assets\NPCFightController.cs" />
     <Compile Include="Assets\OnTriggerEnter.cs" />
+    <Compile Include="Assets\cutscenes\LoopTrack.cs" />
     <Compile Include="Assets\Interactable.cs" />
     <Compile Include="Assets\CameraFocusPointTrigger.cs" />
     <Compile Include="Assets\DoubleSlider.cs" />
