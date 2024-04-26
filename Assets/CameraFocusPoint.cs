@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using UnityEditor;
 using UnityEngine;
 
 public class CameraFocusPoint : MonoBehaviour
@@ -61,7 +62,7 @@ public class CameraFocusPoint : MonoBehaviour
                 Vector3 target = focusPoint.transform.position;
                 target.x -= (target.x / player.transform.position.x - 1) * movementAmount;
 
-                Debug.Log(target);
+                // Debug.Log(target);
 
                 focusPosition = Vector3.SmoothDamp(tempCamera.transform.position, target, ref movementVelocity, 0.55f);
             } else {
@@ -88,7 +89,7 @@ public class CameraFocusPoint : MonoBehaviour
         brain.m_DefaultBlend.m_Style = transitionType;
 
 
-        Debug.Log(mainCamera);
+        // Debug.Log(mainCamera);
         if(!mainCamera.gameObject.activeSelf) 
         {
             // fina all cams with temp tag
@@ -109,5 +110,34 @@ public class CameraFocusPoint : MonoBehaviour
         if(tempCamera == null) return;
         tempCamera.gameObject.SetActive(false);
         mainCamera.gameObject.SetActive(true);
+    }
+}
+
+[CustomEditor(typeof(CameraFocusPoint))]
+public class CameraFocusPointEditor : Editor
+{
+    CameraFocusPoint focusPoint;
+
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        focusPoint = (CameraFocusPoint)target;
+
+        // GUILayout.Space(20);
+
+        GUILayout.BeginHorizontal();
+
+        if(GUILayout.Button("Focus")) 
+        {
+            focusPoint.Focus();
+        }
+
+        if(GUILayout.Button("Unfocus")) 
+        {
+            focusPoint.Unfocus();
+        }
+
+        GUILayout.EndHorizontal();
     }
 }

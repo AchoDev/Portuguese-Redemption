@@ -17,9 +17,9 @@ public class LoopScript : MonoBehaviour
         if (looping)
         {
             float currentTime = (float)director.time + (2 / 60f);
-            Debug.Log(loopRange.Item2);
-            Debug.Log(currentTime);
-            Debug.Log(50 / 60);
+            // Debug.Log(loopRange.Item2);
+            // Debug.Log(currentTime);
+            // Debug.Log(50 / 60);
             if (currentTime >= loopRange.Item2)
             {
                 director.time = loopRange.Item1;
