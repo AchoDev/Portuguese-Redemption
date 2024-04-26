@@ -14,11 +14,14 @@ public class LoopTrack : PlayableAsset
 
 public class LoopBehaviour : PlayableBehaviour
 {
-    bool firstFrame = false;
+    bool firstFrame = true;
     public override void ProcessFrame(Playable playable, FrameData info, object playerData)
     {
-        if(firstFrame) return;
+        LoopScript current = (playable.GetGraph().GetResolver() as PlayableDirector).gameObject.GetComponent<LoopScript>();
+        current?.Check();
+        if(!firstFrame) return;
+        firstFrame = false;
 
-        
+        current?.StartLoop(0, (float)playable.GetDuration());
     }
 }
