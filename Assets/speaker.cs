@@ -249,29 +249,34 @@ public class speaker : MonoBehaviour
             currentLine++;
             if(currentLine >= dialogue.Length) // stop dialogue after last line
             {
-                talking = false;
-                currentLine = 0;
-                canvasAnimator.SetBool("speaking", false);
-                // playerMovement.allowMovement = true;
-                cameraFocusPoint.Unfocus();
-
-                StartCoroutine(waitBeforeEnd(dialogue[dialogue.Length - 1].name.ToString()));
-
-                if(onDialogueFinish != null) onDialogueFinish.Invoke();
-
-                if(setAnimatorTalking) {
-                    initiator.GetComponent<Animator>().SetBool("talking", false);
-                    // animator.SetBool("talking", false);
-                }
-
-                timeBetweenLetters = timeBetweenLettersOriginal;
-                if(leaveLoopAfterFinsh) {
-                    LoopBehaviour.leave = true;
-                }
+                stopTalking();
             } else 
             {
                 startNextLine();
             }
+        }
+    }
+
+    void stopTalking() 
+    {
+        talking = false;
+        currentLine = 0;
+        canvasAnimator.SetBool("speaking", false);
+        // playerMovement.allowMovement = true;
+        cameraFocusPoint.Unfocus();
+
+        StartCoroutine(waitBeforeEnd(dialogue[dialogue.Length - 1].name.ToString()));
+
+        if(onDialogueFinish != null) onDialogueFinish.Invoke();
+
+        if(setAnimatorTalking) {
+            initiator.GetComponent<Animator>().SetBool("talking", false);
+            // animator.SetBool("talking", false);
+        }
+
+        timeBetweenLetters = timeBetweenLettersOriginal;
+        if(leaveLoopAfterFinsh) {
+            LoopBehaviour.leave = true;
         }
     }
 
@@ -371,7 +376,13 @@ public class speaker : MonoBehaviour
                 break;
             case "next":
                 currentLine++;
-                startNextLine();
+                if(currentLine >= dialogue.Length) // stop dialogue after last line
+                {
+                    stopTalking();
+                } else 
+                {
+                    startNextLine();
+                }
                 break;
             case "play":
                 break;

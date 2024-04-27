@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Settings/Scenes/2D URP Scene Template.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/billstedt.unity
+    guid: cdbb23fbc69c2204798f9e9750d94470
+  - enabled: 1
+    path: Assets/Scenes/fight.unity
+    guid: ad3c804c8c5d642c3aea7d74c78b20d6
+  - enabled: 1
+    path: Assets/Scenes/graveyard.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects: {}
