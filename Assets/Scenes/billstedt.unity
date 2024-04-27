@@ -5886,6 +5886,7 @@ MonoBehaviour:
   initiator: {fileID: 0}
   turnTowardsPlayer: 0
   setAnimatorTalking: 0
+  leaveLoopAfterFinsh: 1
   timeBetweenLetters: 25
   onDialogueFinish:
     m_PersistentCalls:
@@ -6463,6 +6464,7 @@ MonoBehaviour:
   initiator: {fileID: 0}
   turnTowardsPlayer: 0
   setAnimatorTalking: 0
+  leaveLoopAfterFinsh: 1
   timeBetweenLetters: 37.7
   onDialogueFinish:
     m_PersistentCalls:
@@ -7395,6 +7397,7 @@ GameObject:
   - component: {fileID: 930393099}
   - component: {fileID: 930393100}
   - component: {fileID: 930393101}
+  - component: {fileID: 930393102}
   m_Layer: 0
   m_Name: dialogue manager
   m_TagString: Untagged
@@ -7449,10 +7452,10 @@ MonoBehaviour:
     m_Events:
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 930393100}
-          m_TargetAssemblyTypeName: DialogueCutsceneManager, Assembly-CSharp
-          m_MethodName: StartDialogue
-          m_Mode: 3
+        - m_Target: {fileID: 930393098}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: set_isStatic
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7461,6 +7464,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &930393102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930393098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11924a29d342a9e4487b87c4b94772c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signalAsset: {fileID: 11400000, guid: 7c6a640c8d29b8f44bdaccb147bc2533, type: 2}
+  manager: {fileID: 930393100}
 --- !u!1 &937173781
 GameObject:
   m_ObjectHideFlags: 0
@@ -19278,6 +19295,7 @@ MonoBehaviour:
   initiator: {fileID: 0}
   turnTowardsPlayer: 0
   setAnimatorTalking: 0
+  leaveLoopAfterFinsh: 0
   timeBetweenLetters: 37.7
   onDialogueFinish:
     m_PersistentCalls:

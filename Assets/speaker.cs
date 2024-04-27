@@ -51,6 +51,7 @@ public class speaker : MonoBehaviour
     [SerializeField] GameObject initiator = null;
     [SerializeField] bool turnTowardsPlayer = false;
     [SerializeField, Tooltip("Sets animation parameter 'talking' to true")] bool setAnimatorTalking = false;
+    [SerializeField] bool leaveLoopAfterFinsh = false;
     [Range(0, 100f)] public float timeBetweenLetters = 25;
     float timeBetweenLettersOriginal;
     [SerializeField] UnityEvent onDialogueFinish;
@@ -263,6 +264,9 @@ public class speaker : MonoBehaviour
                 }
 
                 timeBetweenLetters = timeBetweenLettersOriginal;
+                if(leaveLoopAfterFinsh) {
+                    LoopBehaviour.leave = true;
+                }
             } else 
             {
                 startNextLine();

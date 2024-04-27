@@ -10,16 +10,18 @@ public class LoopScript : MonoBehaviour
     bool looping = false;
     Tuple<float, float> loopRange;
 
-    public void Check()
+    public void Check(float dt)
     {
         if(director == null) director = GetComponent<PlayableDirector>();
         if(loopRange == null) return;
+
+        if(LoopBehaviour.leave) StopLoop();
+
         if (looping)
         {
-            float currentTime = (float)director.time + (2 / 60f);
+            float currentTime = (float)director.time + (dt * 5);
             // Debug.Log(loopRange.Item2);
             // Debug.Log(currentTime);
-            // Debug.Log(50 / 60);
             if (currentTime >= loopRange.Item2)
             {
                 director.time = loopRange.Item1;
@@ -29,11 +31,19 @@ public class LoopScript : MonoBehaviour
 
     public void StartLoop(float start, float end)
     {
+        if(director == null) director = GetComponent<PlayableDirector>();
         looping = true;
 
         start += (float)director.time;
         end += (float)director.time;
 
         loopRange = new Tuple<float, float>(start, end);
+    }
+
+    public void StopLoop()
+    {
+        Debug.Log("Stop loop");
+        looping = false;
+        LoopBehaviour.leave = false;
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.UIElements;
 
 public class LoopTrack : PlayableAsset
 {
@@ -14,6 +15,7 @@ public class LoopTrack : PlayableAsset
 
 public class LoopBehaviour : PlayableBehaviour
 {
+    public static bool leave = false;
     bool firstFrame = true;
 
     public override void OnBehaviourPlay(Playable playable, FrameData info)
@@ -24,15 +26,15 @@ public class LoopBehaviour : PlayableBehaviour
 
     public override void ProcessFrame(Playable playable, FrameData info, object playerData)
     {
+
+        if(leave) Debug.Log("LEEEEEEEEAAAAAAAAAAVE");
+
         LoopScript current = (playable.GetGraph().GetResolver() as PlayableDirector).gameObject.GetComponent<LoopScript>();
-        current?.Check();
-        if(!firstFrame) return;
-        firstFrame = false;
-
-        // get track start
-        
-
-
-        current?.StartLoop(0, (float)playable.GetDuration());
+        if(firstFrame) {
+            firstFrame = false;
+            current?.StartLoop(0, (float)playable.GetDuration());
+        } else {
+            current?.Check(info.deltaTime);
+        }
     }
 }

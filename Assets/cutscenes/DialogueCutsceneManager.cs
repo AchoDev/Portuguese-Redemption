@@ -11,18 +11,12 @@ public class DialogueCutsceneManager : MonoBehaviour
     void Start()
     {
         dialogues = GetComponentsInChildren<speaker>();
-
-
-        Debug.Log(dialogues);
-        Debug.Log(dialogues[0]);
-        Debug.Log("fjdklasöfsdjkalöfdjasklöfdjkslöajdfsklöafjsdklöa");
     }
 
 
     public void StartDialogue(int index)
     {
-        Debug.Log(dialogues.Length);
-        Debug.Log(index);
+        if(dialogues == null || dialogues[index] == null) return;
         dialogues[index].speak();
     }
 
