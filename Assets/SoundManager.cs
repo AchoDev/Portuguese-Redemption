@@ -29,7 +29,11 @@ public class SoundManager : MonoBehaviour
 
     void Start() {
         foreach (Sound s in sounds) {
-            s.SetSource(gameObject.AddComponent<AudioSource>());
+            AudioSource a = gameObject.AddComponent<AudioSource>();
+            s.SetSource(a);
+            if(s.playOnAwake) {
+                s.Play();
+            }
         }
     }
 } 
@@ -40,6 +44,8 @@ class Sound
     public string name;
     [Range(0, 1)] public float volume = 0.5f;
     public AudioClip clip;
+    public bool loop;
+    public bool playOnAwake;
     private AudioSource source;
 
     public void SetSource(AudioSource _source)
@@ -47,6 +53,8 @@ class Sound
         source = _source;
         source.clip = clip;
         source.volume = volume;
+        source.loop = loop;
+        source.playOnAwake = playOnAwake;
     }
 
     public void Play()
