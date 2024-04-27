@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class CameraFocusPoint : MonoBehaviour
 {
+
+    public static bool allowFocus = true;
+
     CinemachineBrain brain;
     CinemachineVirtualCamera mainCamera;
     CinemachineVirtualCamera tempCamera;
@@ -45,6 +48,11 @@ public class CameraFocusPoint : MonoBehaviour
 
     void Update()
     {
+
+        if(!allowFocus) {
+            Unfocus();
+        }
+
         if(focused) 
         {
             tempCamera.transform.position = focusPosition;
@@ -82,6 +90,8 @@ public class CameraFocusPoint : MonoBehaviour
     public void Focus(Vector3 position) 
     {
 
+        if(!allowFocus) return;
+
         focusPosition = position;
         focused = true;
 
@@ -111,6 +121,11 @@ public class CameraFocusPoint : MonoBehaviour
         tempCamera.gameObject.SetActive(false);
         mainCamera.gameObject.SetActive(true);
     }
+
+    public void disableFocus() 
+    {
+        allowFocus = false;
+    }
 }
 
 [CustomEditor(typeof(CameraFocusPoint))]
@@ -120,6 +135,12 @@ public class CameraFocusPointEditor : Editor
 
     public override void OnInspectorGUI()
     {
+
+        if(!CameraFocusPoint.allowFocus) 
+        {
+            EditorGUILayout.HelpBox("Focus is disabled", MessageType.Warning);
+        }
+
         DrawDefaultInspector();
 
         focusPoint = (CameraFocusPoint)target;
@@ -139,5 +160,20 @@ public class CameraFocusPointEditor : Editor
         }
 
         GUILayout.EndHorizontal();
+
+        if(CameraFocusPoint.allowFocus) 
+        {
+            if(GUILayout.Button("Allow focus")) 
+            {
+                CameraFocusPoint.allowFocus = true;
+            }
+        } else {
+            if(GUILayout.Button("Disallow focus completely")) 
+            {
+                focusPoint.disableFocus();
+            }
+        }
+
+
     }
 }

@@ -228,6 +228,7 @@ Transform:
   - {fileID: 1281511089}
   - {fileID: 756136095}
   - {fileID: 1601574934}
+  - {fileID: 1782451250}
   - {fileID: 158843087}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -821,6 +822,10 @@ PlayableDirector:
     value: {fileID: 1171496820}
   - key: {fileID: -4431830061512207357, guid: 53f315d04b2395c4c8a630a7f609527c, type: 2}
     value: {fileID: 147318500}
+  - key: {fileID: -151002541498638593, guid: 53f315d04b2395c4c8a630a7f609527c, type: 2}
+    value: {fileID: 1601574933}
+  - key: {fileID: -1218772892401628040, guid: 53f315d04b2395c4c8a630a7f609527c, type: 2}
+    value: {fileID: 1782451253}
   m_ExposedReferences:
     m_References:
     - 8b2940d9651bee344a3f8bc73397ec02: {fileID: 698893551}
@@ -971,7 +976,6 @@ Transform:
   m_Children:
   - {fileID: 1356269708}
   - {fileID: 1826744597}
-  - {fileID: 1782451250}
   - {fileID: 181459299}
   - {fileID: 293030695}
   m_Father: {fileID: 61688032}
@@ -5885,6 +5889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initiator: {fileID: 0}
   turnTowardsPlayer: 0
+  isMystery: 0
   setAnimatorTalking: 0
   leaveLoopAfterFinsh: 1
   timeBetweenLetters: 25
@@ -6103,9 +6108,9 @@ Transform:
   m_LocalScale: {x: 0.11841618, y: 0.11841618, z: 0.11841618}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 843135503}
   - {fileID: 1025827400}
   - {fileID: 371055773}
+  - {fileID: 843135503}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &787248725
@@ -6463,6 +6468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initiator: {fileID: 0}
   turnTowardsPlayer: 0
+  isMystery: 0
   setAnimatorTalking: 0
   leaveLoopAfterFinsh: 1
   timeBetweenLetters: 37.7
@@ -7420,6 +7426,7 @@ Transform:
   m_Children:
   - {fileID: 780371640}
   - {fileID: 812229094}
+  - {fileID: 1650500375}
   m_Father: {fileID: 147318498}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &930393100
@@ -17922,6 +17929,113 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1468671456}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1650500374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1650500375}
+  - component: {fileID: 1650500377}
+  - component: {fileID: 1650500376}
+  m_Layer: 0
+  m_Name: dialogue3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1650500375
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650500374}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 930393099}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1650500376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650500374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ac3b2fac4724c8e983de2635845c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initiator: {fileID: 0}
+  turnTowardsPlayer: 0
+  isMystery: 1
+  setAnimatorTalking: 0
+  leaveLoopAfterFinsh: 1
+  timeBetweenLetters: 37.7
+  onDialogueFinish:
+    m_PersistentCalls:
+      m_Calls: []
+  focusCamera: 0
+  cameraSpeed: 1
+  ortho: 2.5
+  talkByInteracting: 0
+  dialogue:
+  - name: 8
+    dialogue: You........
+    emotion: 0
+--- !u!61 &1650500377
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650500374}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1672774723
 GameObject:
   m_ObjectHideFlags: 0
@@ -18812,6 +18926,7 @@ GameObject:
   - component: {fileID: 1782451250}
   - component: {fileID: 1782451252}
   - component: {fileID: 1782451251}
+  - component: {fileID: 1782451253}
   m_Layer: 0
   m_Name: Ramza Hoholla
   m_TagString: Untagged
@@ -18828,12 +18943,12 @@ Transform:
   m_GameObject: {fileID: 1782451249}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 5.79, y: -12.74, z: -8.012617}
+  m_LocalPosition: {x: 5.790004, y: -12.739991, z: -8.012617}
   m_LocalScale: {x: 0.52988565, y: 0.52988565, z: 0.52988565}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 851113683}
-  m_Father: {fileID: 158843087}
+  m_Father: {fileID: 61688032}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1782451251
 MonoBehaviour:
@@ -18901,7 +19016,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 77ce91cb23cb44f4eba93d06268d95e0, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -18911,6 +19026,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1782451253
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782451249}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1782687537
 GameObject:
   m_ObjectHideFlags: 0
@@ -19294,6 +19430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initiator: {fileID: 0}
   turnTowardsPlayer: 0
+  isMystery: 0
   setAnimatorTalking: 0
   leaveLoopAfterFinsh: 0
   timeBetweenLetters: 37.7

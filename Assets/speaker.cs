@@ -50,6 +50,7 @@ public class speaker : MonoBehaviour
     [Header("General")]
     [SerializeField] GameObject initiator = null;
     [SerializeField] bool turnTowardsPlayer = false;
+    [SerializeField] bool isMystery = false;
     [SerializeField, Tooltip("Sets animation parameter 'talking' to true")] bool setAnimatorTalking = false;
     [SerializeField] bool leaveLoopAfterFinsh = false;
     [Range(0, 100f)] public float timeBetweenLetters = 25;
@@ -308,6 +309,10 @@ public class speaker : MonoBehaviour
             default:
                 nameBox.text = SplitCamelCase(message.name.ToString());
                 break;
+        }
+
+        if(isMystery) {
+            nameBox.text = "???";
         }
 
 
