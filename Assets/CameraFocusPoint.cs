@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CameraFocusPoint : MonoBehaviour
 {
-
+    [SerializeField]
     public static bool allowFocus = true;
 
     CinemachineBrain brain;
@@ -161,7 +161,7 @@ public class CameraFocusPointEditor : Editor
 
         GUILayout.EndHorizontal();
 
-        if(CameraFocusPoint.allowFocus) 
+        if(!CameraFocusPoint.allowFocus) 
         {
             if(GUILayout.Button("Allow focus")) 
             {
@@ -173,7 +173,5 @@ public class CameraFocusPointEditor : Editor
                 focusPoint.disableFocus();
             }
         }
-
-
     }
 }
