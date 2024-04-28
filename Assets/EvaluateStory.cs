@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class EvaluateStory : MonoBehaviour
 {
+
+    [SerializeField] PlayableDirector DefeatRamzaCutscene;
+
     public void Evaluate()
     {
         SceneManager sceneManager = GameObject.FindWithTag("SceneManager").GetComponent<SceneManager>();
@@ -17,7 +21,7 @@ public class EvaluateStory : MonoBehaviour
                 // Evaluate DayOne
                 break;
             case StoryProgression.DefeatRamza:
-                // Evaluate DefeatRamza
+                DefeatRamzaCutscene.Play();
                 break;
             case StoryProgression.DayOneAfternoon:
                 // Evaluate DayOneAfternoon
