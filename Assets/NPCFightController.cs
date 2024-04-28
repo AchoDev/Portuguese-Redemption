@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 public class NPCFightController : MonoBehaviour
@@ -37,6 +38,8 @@ public class NPCFightController : MonoBehaviour
     [HideInInspector] public float defendProbability = 0.33f;
 
     [SerializeField] float speed = 1.5f;
+    [SerializeField] float deathDuration = 5f;
+    [SerializeField] UnityEvent onDeath;
 
     DoubleSlider healthBar;
 
@@ -249,8 +252,17 @@ public class NPCFightController : MonoBehaviour
         if(health == 0) {
             animator.SetTrigger("die");
             dead = true;
+            StartCoroutine(endDeath());
         }
         falling = true;
+
+
+    }
+
+    public IEnumerator endDeath() 
+    {
+        yield return new WaitForSeconds(deathDuration);
+        onDeath.Invoke();
     }
 
     public void endFalling() 

@@ -791,7 +791,7 @@ GameObject:
   - component: {fileID: 147318500}
   - component: {fileID: 147318502}
   m_Layer: 0
-  m_Name: timeline
+  m_Name: meet ramza cutscene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5728,6 +5728,50 @@ Transform:
   - {fileID: 2068983777}
   m_Father: {fileID: 1453738798}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &732725638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 732725640}
+  - component: {fileID: 732725639}
+  m_Layer: 0
+  m_Name: StoryEvaluator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &732725639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732725638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bfe891a27bfcaa46bd384e40f07920d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &732725640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732725638}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 122.37142, y: 165.75658, z: -4.7663145}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &738570051
 GameObject:
   m_ObjectHideFlags: 0
@@ -7429,6 +7473,8 @@ MonoBehaviour:
   - name: door_slam
     volume: 0.627
     clip: {fileID: 8300000, guid: fbfffa3af99255840bce21ac8f882882, type: 3}
+    loop: 0
+    playOnAwake: 0
 --- !u!4 &892282687
 Transform:
   m_ObjectHideFlags: 0
@@ -27518,3 +27564,4 @@ SceneRoots:
   - {fileID: 892282687}
   - {fileID: 147318498}
   - {fileID: 1607918695}
+  - {fileID: 732725640}

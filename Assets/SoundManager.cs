@@ -27,6 +27,11 @@ public class SoundManager : MonoBehaviour
         s.Play();
     }
 
+    public void Stop(string name) {
+        Sound s = findSound(name);
+        s.Stop();
+    }
+
     void Start() {
         foreach (Sound s in sounds) {
             AudioSource a = gameObject.AddComponent<AudioSource>();
@@ -60,5 +65,10 @@ class Sound
     public void Play()
     {
         source.Play();
+    }
+
+    public void Stop()
+    {
+        source.Stop();
     }
 }

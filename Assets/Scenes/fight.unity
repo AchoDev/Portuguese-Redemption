@@ -491,6 +491,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 201309168}
   m_CullTransparentMesh: 1
+--- !u!1 &219464177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 219464179}
+  - component: {fileID: 219464178}
+  m_Layer: 0
+  m_Name: SceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &219464178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219464177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8ffd35820746e64f8aa16ad0fa78dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &219464179
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219464177}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.33970618, y: -3.0909398, z: -0.6258322}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &233028961
 GameObject:
   m_ObjectHideFlags: 3
@@ -875,6 +919,7 @@ GameObject:
   - component: {fileID: 338840615}
   - component: {fileID: 338840619}
   - component: {fileID: 338840618}
+  - component: {fileID: 338840620}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -925,7 +970,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.717363
+  orthographic size: 2.7188914
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1034,6 +1079,18 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &338840620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338840614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cb24b4ee8893da4cad9927204e1b65f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &344666390
 GameObject:
   m_ObjectHideFlags: 0
@@ -1584,6 +1641,7 @@ GameObject:
   - component: {fileID: 474364730}
   - component: {fileID: 474364729}
   - component: {fileID: 474364728}
+  - component: {fileID: 474364731}
   m_Layer: 8
   m_Name: Leo_Tshirt
   m_TagString: Player
@@ -1804,6 +1862,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+--- !u!114 &474364731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474364723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cb24b4ee8893da4cad9927204e1b65f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &496020612
 GameObject:
   m_ObjectHideFlags: 0
@@ -2146,6 +2216,7 @@ GameObject:
   - component: {fileID: 757427666}
   - component: {fileID: 757427668}
   - component: {fileID: 757427667}
+  - component: {fileID: 757427669}
   m_Layer: 0
   m_Name: Ramza Hoholla
   m_TagString: Enemy
@@ -2282,6 +2353,34 @@ MonoBehaviour:
   attackProbability: 0.59
   defendProbability: 0.3
   speed: 0.67
+  deathDuration: 5
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 219464178}
+        m_TargetAssemblyTypeName: SceneManager, Assembly-CSharp
+        m_MethodName: ProgressStory
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 219464178}
+        m_TargetAssemblyTypeName: SceneManager, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: billstedt
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &757427667
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2354,6 +2453,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &757427669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757427661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cb24b4ee8893da4cad9927204e1b65f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &836443828
 GameObject:
   m_ObjectHideFlags: 0
@@ -2715,6 +2826,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1148473571}
   - component: {fileID: 1148473570}
+  - component: {fileID: 1148473572}
   m_Layer: 0
   m_Name: beginning cutscene
   m_TagString: Untagged
@@ -2747,6 +2859,10 @@ PlayableDirector:
     value: {fileID: 862433875}
   - key: {fileID: 6532869993434329648, guid: 43336f9ea5f186643a864e946eaf2523, type: 2}
     value: {fileID: 641376216}
+  - key: {fileID: -6287923585031737689, guid: 43336f9ea5f186643a864e946eaf2523, type: 2}
+    value: {fileID: 757427665}
+  - key: {fileID: 8935526795068288887, guid: 43336f9ea5f186643a864e946eaf2523, type: 2}
+    value: {fileID: 1241044867}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1148473571
@@ -2764,6 +2880,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1148473572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148473569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5ee92d7d7eb5de42aa50ef752a53a45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTimelineFinish:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1585817170}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: wcronald_theme
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1241044863
 GameObject:
   m_ObjectHideFlags: 0
@@ -3370,7 +3513,7 @@ GameObject:
   - component: {fileID: 1585817170}
   m_Layer: 0
   m_Name: SoundManager
-  m_TagString: Untagged
+  m_TagString: SoundManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3388,9 +3531,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: main_theme
+  - name: helicopter
     volume: 1
-    clip: {fileID: 8300000, guid: c7a175317be8dab45835618745c1c76e, type: 3}
+    clip: {fileID: 8300000, guid: 5919152c68a94484f93b445ac6eef296, type: 3}
+    loop: 0
+    playOnAwake: 0
+  - name: wcronald_theme
+    volume: 1
+    clip: {fileID: 8300000, guid: d2286ad50ddd60145b469f90648de75c, type: 3}
+    loop: 1
+    playOnAwake: 0
+  - name: die
+    volume: 1
+    clip: {fileID: 8300000, guid: 43d66b8771f00224b8446296dd0b65ba, type: 3}
     loop: 0
     playOnAwake: 0
 --- !u!4 &1585817171
@@ -4312,3 +4465,4 @@ SceneRoots:
   - {fileID: 429004469}
   - {fileID: 1585817171}
   - {fileID: 1148473571}
+  - {fileID: 219464179}

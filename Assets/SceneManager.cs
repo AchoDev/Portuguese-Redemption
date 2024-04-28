@@ -8,4 +8,12 @@ public class SceneManager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
     }
+
+    public void ProgressStory(int id) {
+        StaticSceneInformation.currentProgression = (StoryProgression)id;
+    }
+
+    public StoryProgression GetStoryProgression() {
+        return StaticSceneInformation.currentProgression;
+    }
 }
