@@ -30,7 +30,8 @@ enum Emotion {
     embarrassed,
     funny,
     sus,
-    kawaii
+    kawaii,
+    shocked,
 }
 
 [System.Serializable]
