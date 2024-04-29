@@ -33,7 +33,7 @@ enum Emotion {
     kawaii,
     shocked,
 }
-
+a
 [System.Serializable]
 class Message {
     public People name;
