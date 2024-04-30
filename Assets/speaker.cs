@@ -33,13 +33,14 @@ enum Emotion {
     kawaii,
     shocked,
 }
-a
+
 [System.Serializable]
 class Message {
     public People name;
     [TextArea(3, 10)]
     public string dialogue;
     public Emotion emotion = Emotion.neutral;
+    public bool leaveLoop = false;
 }
 
 [RequireComponent(typeof(BoxCollider2D))]
@@ -247,6 +248,7 @@ public class speaker : MonoBehaviour
             currentIndex = text.Length - 1;
         } else // go to next line
         {
+            if(dialogue[currentLine].leaveLoop) LoopBehaviour.leave = true;
             currentLine++;
             if(currentLine >= dialogue.Length) // stop dialogue after last line
             {

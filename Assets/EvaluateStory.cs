@@ -7,10 +7,15 @@ public class EvaluateStory : MonoBehaviour
 {
 
     [SerializeField] PlayableDirector DefeatRamzaCutscene;
+    [SerializeField] SceneManager sceneManager;
+
+    void Start()
+    {
+        Evaluate();
+    }
 
     public void Evaluate()
     {
-        SceneManager sceneManager = GameObject.FindWithTag("SceneManager").GetComponent<SceneManager>();
         StoryProgression progression = sceneManager.GetStoryProgression();
         switch (progression)
         {

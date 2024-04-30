@@ -1376,7 +1376,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1.49
+  orthographic size: 1.22
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1401,7 +1401,7 @@ Transform:
   m_GameObject: {fileID: 165787499}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 122.65, y: 166.63, z: -14.71}
+  m_LocalPosition: {x: 122.43, y: 178.26, z: -14.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3173,47 +3173,45 @@ MonoBehaviour:
   - name: 5
     dialogue: Hey are you okay???
     emotion: 4
+    leaveLoop: 0
   - name: 5
     dialogue: Yeah I'm good
     emotion: 4
+    leaveLoop: 1
   - name: 5
     dialogue: Boss?? Why did you just attack him
     emotion: 4
+    leaveLoop: 0
   - name: 5
     dialogue: Well, I don't really have a good excuse this time
     emotion: 4
-  - name: 5
+    leaveLoop: 0
+  - name: 6
     dialogue: This time?? What do you mean has this happened already?
-    emotion: 4
+    emotion: 7
+    leaveLoop: 0
   - name: 5
     dialogue: Yeah it has. MULTIPLE times. Nobody intervened just now, because the
       Boss usually wins these fights.
     emotion: 4
-  - name: 5
+    leaveLoop: 0
+  - name: 8
     dialogue: Losing has really woken me up this time, thanks you Leo. I think I'll
       take a vacation and visit my family again
-    emotion: 4
+    emotion: 0
+    leaveLoop: 0
   - name: 5
     dialogue: WHAT!? You haven't taken a vacation in YEARS!
     emotion: 4
-  - name: 5
-    dialogue: That's true. Leon, welcome your new Coworker here!
-    emotion: 4
-  - name: 5
-    dialogue: Cowo-...? Ohhhhhh you're one of us now?
-    emotion: 4
-  - name: 5
-    dialogue: 'Guess I am. '
-    emotion: 4
-  - name: 5
-    dialogue: What's you position? When are you working?
-    emotion: 4
-  - name: 5
-    dialogue: 'You can ask him that another day. Now, let''s continue. '
-    emotion: 4
-  - name: 5
+    leaveLoop: 0
+  - name: 8
+    dialogue: That's true. Now, let's continue, shall we?
+    emotion: 0
+    leaveLoop: 0
+  - name: 8
     dialogue: We've wasted enough time already....
     emotion: 4
+    leaveLoop: 0
 --- !u!61 &367290392
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4609,88 +4607,114 @@ MonoBehaviour:
   - name: 6
     dialogue: So? Care to explain what the hell just happened?
     emotion: 0
+    leaveLoop: 0
   - name: 8
     dialogue: Forgive me young man, I've lost my temper
     emotion: 0
+    leaveLoop: 0
   - name: 8
     dialogue: This always happens.... I really need to work on myself
     emotion: 0
+    leaveLoop: 0
   - name: 6
     dialogue: YEAH, you definitely do
     emotion: 0
+    leaveLoop: 0
   - name: 8
     dialogue: You see, I've been always taught that time is our most precious asset.
       Since I've been running this place, my free time has been consumed wholly by
       it.
     emotion: 0
+    leaveLoop: 0
   - name: 8
     dialogue: I haven't seen my family in weeks, not to mention my family. Don't
       make the same mistake as me, lad.
     emotion: 0
+    leaveLoop: 0
   - name: 6
     dialogue: Oh... uhh... alright.
     emotion: 0
+    leaveLoop: 0
   - name: 8
     dialogue: I know very well that apologizing will not lessen any harm I've caused
       you
     emotion: 0
+    leaveLoop: 0
   - name: 8
     dialogue: So I, Ramza Hoholla, will grant you one wish
     emotion: 0
+    leaveLoop: 0
   - name: 6
     dialogue: One wish?
     emotion: 0
+    leaveLoop: 0
   - name: 8
     dialogue: One wish
     emotion: 0
+    leaveLoop: 0
   - name: 6
     dialogue: Okay, I want a job here
     emotion: 0
+    leaveLoop: 0
   - name: 8
     dialogue: A job you say? Why? Nobody wants to work here voluntarily
     emotion: 7
+    leaveLoop: 0
   - name: 6
     dialogue: Well maybe, but I need money. As soon as possible
     emotion: 0
+    leaveLoop: 0
   - name: 8
     dialogue: Well, I could just give you mo-
     emotion: 7
+    leaveLoop: 0
   - name: 6
     dialogue: NOnoono, my wish is a job
     emotion: 0
+    leaveLoop: 0
   - name: 8
     dialogue: Alright young man, as you wish. We only have one singular open spot
       though, are you okay with that?
     emotion: 0
+    leaveLoop: 0
   - name: 6
     dialogue: Yeah, anything is fine by me
     emotion: 0
+    leaveLoop: 0
   - name: 8
     dialogue: Then so be it. You shall heretofore be employed in this location of
       the WcRonalds & Co Company as Night Guard.
     emotion: 4
+    leaveLoop: 0
   - name: 8
     dialogue: Night guard?
     emotion: 7
+    leaveLoop: 0
   - name: 8
     dialogue: Yes, that's the open spot I was talking about
     emotion: 0
+    leaveLoop: 0
   - name: 0
     dialogue: Oh... I don't know how to do that
     emotion: 0
+    leaveLoop: 0
   - name: 8
     dialogue: Don't worry, since your shift starts at 11PM anyway, I'll just teach
       you before that. What was your name again?
     emotion: 4
+    leaveLoop: 0
   - name: 6
     dialogue: Leo
     emotion: 4
+    leaveLoop: 0
   - name: 8
     dialogue: Okay Leo, I welcome you to the team!
     emotion: 4
+    leaveLoop: 0
   - name: 6
     dialogue: Yes! Step one done!
     emotion: 4
+    leaveLoop: 0
 --- !u!61 &569025253
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5849,15 +5873,19 @@ MonoBehaviour:
   - name: 8
     dialogue: YOUUUUU......
     emotion: 3
+    leaveLoop: 0
   - name: 8
     dialogue: You SHALL PAY for this!
     emotion: 3
+    leaveLoop: 0
   - name: 8
     dialogue: No waste of my time will go unpunished!
     emotion: 2
+    leaveLoop: 0
   - name: 8
     dialogue: En Garde!!!!
     emotion: 3
+    leaveLoop: 0
 --- !u!61 &711008152
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6094,7 +6122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bfe891a27bfcaa46bd384e40f07920d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DefeatRamzaCutscene: {fileID: 0}
+  DefeatRamzaCutscene: {fileID: 1745654331}
+  sceneManager: {fileID: 1607918694}
 --- !u!4 &732725640
 Transform:
   m_ObjectHideFlags: 0
@@ -6516,39 +6545,51 @@ MonoBehaviour:
   - name: 5
     dialogue: Good morning sir, welcome to WcRonalds
     emotion: 0
+    leaveLoop: 0
   - name: 6
     dialogue: Hello
     emotion: 0
+    leaveLoop: 0
   - name: 6
     dialogue: ............................................................
     emotion: 0
+    leaveLoop: 0
   - name: 5
     dialogue: ...uhhh... would y-you like to order some-
     emotion: 4
+    leaveLoop: 0
   - name: 6
     dialogue: I want a job
     emotion: 0
+    leaveLoop: 0
   - name: 5
     dialogue: A job?
     emotion: 7
+    leaveLoop: 0
   - name: 6
     dialogue: Yes, I feel like becoming an alpha sigma male so now I need to grind
     emotion: 0
+    leaveLoop: 0
   - name: 5
     dialogue: A-Alright okay... you can speak the store owner, he is currently here
     emotion: 0
+    leaveLoop: 0
   - name: 6
     dialogue: Okay cool, when can I start working to get money?
     emotion: 0
+    leaveLoop: 0
   - name: 5
     dialogue: ...you need to first get the job before you can work
     emotion: 7
+    leaveLoop: 0
   - name: 6
     dialogue: Okay, so how do I get the job? Can I buy it?
     emotion: 0
+    leaveLoop: 0
   - name: 5
     dialogue: ...huh uhhh... lemme just get the guy
     emotion: 4
+    leaveLoop: 0
 --- !u!61 &780371642
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7095,15 +7136,19 @@ MonoBehaviour:
   - name: 5
     dialogue: Boss? .....re's this.... and he..... speak wi.-...........
     emotion: 4
+    leaveLoop: 0
   - name: 7
     dialogue: .....one minute...... you've...... my ti-..... not anger........ -stood?
     emotion: 0
+    leaveLoop: 0
   - name: 5
     dialogue: I know b-..... should reallly............. seems impor-.........
     emotion: 4
+    leaveLoop: 0
   - name: 7
     dialogue: Better....... know wh-....... happen
     emotion: 0
+    leaveLoop: 0
 --- !u!61 &812229096
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7632,6 +7677,192 @@ Transform:
   - {fileID: 1018372279}
   m_Father: {fileID: 1782451250}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &852354632
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 852354633}
+  - component: {fileID: 852354635}
+  - component: {fileID: 852354634}
+  - component: {fileID: 852354636}
+  m_Layer: 0
+  m_Name: after cutscene dialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &852354633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852354632}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1745654332}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &852354634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852354632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ac3b2fac4724c8e983de2635845c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initiator: {fileID: 1782451249}
+  turnTowardsPlayer: 0
+  isMystery: 0
+  setAnimatorTalking: 0
+  leaveLoopAfterFinsh: 0
+  timeBetweenLetters: 25
+  onDialogueFinish:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 852354636}
+        m_TargetAssemblyTypeName: FadeTransition, Assembly-CSharp
+        m_MethodName: InitiateTransition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 756136098}
+        m_TargetAssemblyTypeName: CameraFocusPoint, Assembly-CSharp
+        m_MethodName: enableFocus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  focusCamera: 1
+  cameraSpeed: 1
+  ortho: 2.5
+  talkByInteracting: 0
+  dialogue:
+  - name: 6
+    dialogue: So, how do I work now?
+    emotion: 0
+    leaveLoop: 0
+  - name: 8
+    dialogue: You don't. Now now at least
+    emotion: 0
+    leaveLoop: 0
+  - name: 6
+    dialogue: Huh? What do you mean?
+    emotion: 7
+    leaveLoop: 0
+  - name: 8
+    dialogue: You're the nightguard. That means you work at NIGHT
+    emotion: 0
+    leaveLoop: 0
+  - name: 6
+    dialogue: Ohh, that makes sense
+    emotion: 0
+    leaveLoop: 0
+  - name: 8
+    dialogue: You should just sleep until nightfall. Before that you can do other
+      stuff in this city as well
+    emotion: 0
+    leaveLoop: 0
+  - name: 6
+    dialogue: Hmm, yeah sure. I have some time to kill so let's see
+    emotion: 0
+    leaveLoop: 0
+--- !u!61 &852354635
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852354632}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &852354636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852354632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31407990aaa69f4458cd77f84b85b037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnFadeInComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1782451249}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  transitioner: {fileID: 1245713750}
 --- !u!1 &859785147
 GameObject:
   m_ObjectHideFlags: 0
@@ -10748,6 +10979,7 @@ GameObject:
   - component: {fileID: 1245713749}
   - component: {fileID: 1245713748}
   - component: {fileID: 1245713750}
+  - component: {fileID: 1245713751}
   m_Layer: 5
   m_Name: blackscreen
   m_TagString: Untagged
@@ -10825,6 +11057,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultDuration: 0.5
+--- !u!95 &1245713751
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245713746}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1246022860
 GameObject:
   m_ObjectHideFlags: 0
@@ -10870,6 +11123,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1252915347}
   - component: {fileID: 1252915348}
+  - component: {fileID: 1252915349}
+  - component: {fileID: 1252915350}
   m_Layer: 0
   m_Name: dialogue manager
   m_TagString: Untagged
@@ -10906,6 +11161,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da886dadf7edd81478b2e601b707e9ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1252915349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252915346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals: []
+    m_Events: []
+--- !u!114 &1252915350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252915346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11924a29d342a9e4487b87c4b94772c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signalAsset: {fileID: 11400000, guid: 7c6a640c8d29b8f44bdaccb147bc2533, type: 2}
+  manager: {fileID: 1252915348}
 --- !u!1 &1254553369
 GameObject:
   m_ObjectHideFlags: 0
@@ -18822,6 +19106,7 @@ MonoBehaviour:
   - name: 8
     dialogue: You........
     emotion: 0
+    leaveLoop: 0
 --- !u!61 &1650500377
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18929,40 +19214,52 @@ MonoBehaviour:
   - name: 8
     dialogue: THREE MINUTES??!?!?
     emotion: 3
+    leaveLoop: 0
   - name: 8
     dialogue: My precious time.......
     emotion: 2
+    leaveLoop: 0
   - name: 6
     dialogue: Hey man, you okay?
     emotion: 7
+    leaveLoop: 0
   - name: 8
     dialogue: I hate you and everything you stand for
     emotion: 3
+    leaveLoop: 0
   - name: 8
     dialogue: You do not know what you did, do you?
     emotion: 3
+    leaveLoop: 0
   - name: 8
     dialogue: You imbecile, you... you worthless void of nothingness..... you............
     emotion: 3
+    leaveLoop: 0
   - name: 8
     dialogue: You........ you......... my family.... my PRIDE..... my STATUS!!!
     emotion: 3
+    leaveLoop: 0
   - name: 8
     dialogue: You DARE TOUCH that!? You impudent fool.
     emotion: 3
+    leaveLoop: 0
   - name: 8
     dialogue: I AM THE MASTER OF THIS DOMAIN. YOU SHALL NOT IMPURIFY MY STATUS AND
       TAINT MY UNWAVERING PURSUIT OF THIS ENDEAVOR
     emotion: 3
+    leaveLoop: 0
   - name: 8
     dialogue: YOU..... this is all YOUR FAULT
     emotion: 3
+    leaveLoop: 0
   - name: 8
     dialogue: YOU WILL PAY FOR THIS
     emotion: 3
+    leaveLoop: 0
   - name: 8
     dialogue: YOU MOTHERFFFFFFFFFFFFFFFFFF<next>
     emotion: 3
+    leaveLoop: 0
 --- !u!61 &1650897527
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19250,6 +19547,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1745654332}
   - component: {fileID: 1745654331}
+  - component: {fileID: 1745654333}
+  - component: {fileID: 1745654334}
   m_Layer: 0
   m_Name: defeat ramza cutscene
   m_TagString: Untagged
@@ -19267,7 +19566,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 5e424bf58fbd8f045b3f3f96fbd5246c, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -19280,6 +19579,10 @@ PlayableDirector:
     value: {fileID: 1782451253}
   - key: {fileID: 4960245039069602748, guid: 5e424bf58fbd8f045b3f3f96fbd5246c, type: 2}
     value: {fileID: 1171496820}
+  - key: {fileID: -8102703237018245656, guid: 5e424bf58fbd8f045b3f3f96fbd5246c, type: 2}
+    value: {fileID: 1252915349}
+  - key: {fileID: -2705427997259267510, guid: 5e424bf58fbd8f045b3f3f96fbd5246c, type: 2}
+    value: {fileID: 1245713751}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1745654332
@@ -19296,8 +19599,72 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1252915347}
+  - {fileID: 852354633}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1745654333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745654330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 900f9813282ad454e975740b92cd2d97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1745654334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1745654330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5ee92d7d7eb5de42aa50ef752a53a45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTimelineFinish:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1607918694}
+        m_TargetAssemblyTypeName: SceneManager, Assembly-CSharp
+        m_MethodName: ProgressStory
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1245713750}
+        m_TargetAssemblyTypeName: Fading, Assembly-CSharp
+        m_MethodName: FadeOutAsync
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 852354634}
+        m_TargetAssemblyTypeName: speaker, Assembly-CSharp
+        m_MethodName: speak
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1745860997
 GameObject:
   m_ObjectHideFlags: 0
@@ -20476,40 +20843,52 @@ MonoBehaviour:
     dialogue: (wispering) ....his name's Ramza Hoholla... please be careful he...
       does not like to waste time
     emotion: 0
+    leaveLoop: 0
   - name: 6
     dialogue: ............................................................?
     emotion: 0
+    leaveLoop: 0
   - name: 6
     dialogue: ...uhhh... I'd like to ask-
     emotion: 0
+    leaveLoop: 0
   - name: 8
     dialogue: Two.. minutes..
     emotion: 0
+    leaveLoop: 0
   - name: 6
     dialogue: Two minutes?
     emotion: 7
+    leaveLoop: 0
   - name: 8
     dialogue: State your name
     emotion: 0
+    leaveLoop: 0
   - name: 6
     dialogue: I'm Leo
     emotion: 0
+    leaveLoop: 0
   - name: 6
     dialogue: Heheh... but they often call me "Arbeitsloser Penner". I don't know
       what it means though
     emotion: 0
+    leaveLoop: 0
   - name: 6
     dialogue: It's so poetic. It can make even a grown man cry
     emotion: 2
+    leaveLoop: 0
   - name: 8
     dialogue: I do not care..... two and- no....
     emotion: 0
+    leaveLoop: 0
   - name: 8
     dialogue: Wait.... what time is it...?
     emotion: 0
+    leaveLoop: 0
   - name: 8
     dialogue: 'No.- <wait 100>no...- <wait 100>nononononono don''t TELL ME......... '
     emotion: 0
+    leaveLoop: 0
 --- !u!61 &1826744599
 BoxCollider2D:
   m_ObjectHideFlags: 0

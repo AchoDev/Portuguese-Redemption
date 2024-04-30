@@ -19,6 +19,16 @@ public class Fading : MonoBehaviour
         image = GetComponent<Image>();
     }
 
+    public void FadeInAsync()
+    {
+        StartCoroutine(FadeIn());
+    }
+
+    public void FadeOutAsync()
+    {
+        StartCoroutine(FadeOut());
+    }
+
     public IEnumerator FadeOut() 
     {
         yield return StartCoroutine(InitiateFadeOut(defaultDuration));

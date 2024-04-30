@@ -126,6 +126,11 @@ public class CameraFocusPoint : MonoBehaviour
     {
         allowFocus = false;
     }
+
+    public void enableFocus() 
+    {
+        allowFocus = true;
+    }
 }
 
 [CustomEditor(typeof(CameraFocusPoint))]
@@ -165,7 +170,7 @@ public class CameraFocusPointEditor : Editor
         {
             if(GUILayout.Button("Allow focus")) 
             {
-                CameraFocusPoint.allowFocus = true;
+                focusPoint.enableFocus();
             }
         } else {
             if(GUILayout.Button("Disallow focus completely")) 
