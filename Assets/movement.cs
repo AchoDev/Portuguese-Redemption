@@ -24,6 +24,8 @@ public class movement : MonoBehaviour
     float normalXSize;
     float currentXSize;
 
+    SoundManager soundManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,11 +34,20 @@ public class movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         normalXSize = transform.localScale.x;
         currentXSize = normalXSize;
+
+        soundManager = GameObject.FindObjectOfType<SoundManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        // float newMoveDirection = Input.GetAxis("Horizontal");
+
+        // if(newMoveDirection != moveDirection && driving) {
+        //     soundManager.Play("scooter");
+        // }
+
         moveDirection = Input.GetAxis("Horizontal");
 
         if(!driving)
@@ -53,7 +64,7 @@ public class movement : MonoBehaviour
 
     void FixedUpdate() 
     {
-        transform.localScale = UnityEngine.Vector3.SmoothDamp(
+        transform.localScale = Vector3.SmoothDamp(
             transform.localScale, 
             new Vector3(currentXSize, transform.localScale.y, transform.localScale.z), 
             ref rotationVelocity,
@@ -69,6 +80,7 @@ public class movement : MonoBehaviour
         {
             currentXSize = moveDirection > 0 ? normalXSize : -normalXSize;
             animator.SetBool("running", true);
+
         } else 
         {
             animator.SetBool("running", false);
@@ -99,5 +111,10 @@ public class movement : MonoBehaviour
         animator.SetTrigger("drive");
         yield return new WaitForEndOfFrame();
         driving = true;
+    }
+
+    public void playRunningSound() 
+    {
+        soundManager.Play("step");
     }
 }
