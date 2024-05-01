@@ -58,7 +58,9 @@ public class EnterableDoor : MonoBehaviour
     {
         yield return blackScreen.FadeIn();
         yield return new WaitForSeconds(0.3f);
-        player.transform.position = destination.position;
+        Vector3 pos = destination.position;
+        pos.z = player.transform.position.z;
+        player.transform.position = pos;
         yield return blackScreen.FadeOut();
     }
 

@@ -7,10 +7,12 @@ public enum StoryProgression {
     DayOne,
     DefeatRamza,
     DayOneAfternoon,
+    DayOneNight,
 }
 
 public class StaticSceneInformation
 {
 
-    public static StoryProgression currentProgression = StoryProgression.Prologue;
+    // public static StoryProgression currentProgression = StoryProgression.Prologue;
+    public static StoryProgression currentProgression = StoryProgression.DayOneNight;
 }

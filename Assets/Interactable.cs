@@ -51,10 +51,10 @@ public class Interactable : MonoBehaviour
         collider.isTrigger = true;
     }
 
-    void OnDrawGizmos()
-    {
-        BoxCollider2D collider = GetComponent<BoxCollider2D>();
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, collider.size);
-    }
+    // void OnDrawGizmos()
+    // {
+    //     BoxCollider2D collider = GetComponent<BoxCollider2D>();
+    //     Gizmos.color = Color.red;
+    //     Gizmos.DrawWireCube(transform.position, collider.size);
+    // }
 }

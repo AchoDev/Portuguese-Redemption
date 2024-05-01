@@ -2,12 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.UI;
 
 public class EvaluateStory : MonoBehaviour
 {
 
+    
     [SerializeField] PlayableDirector DefeatRamzaCutscene;
     [SerializeField] SceneManager sceneManager;
+
+    [Header("Day one night (4)")]
+    [SerializeField] Camera mainCamera;
+    [SerializeField] GameObject nightOverlay;
+
 
     void Start()
     {
@@ -30,6 +37,11 @@ public class EvaluateStory : MonoBehaviour
                 break;
             case StoryProgression.DayOneAfternoon:
                 // Evaluate DayOneAfternoon
+                break;
+
+            case StoryProgression.DayOneNight:
+                mainCamera.backgroundColor = new Color(0, 0, 0);
+                nightOverlay.SetActive(true);
                 break;
         }
     }
