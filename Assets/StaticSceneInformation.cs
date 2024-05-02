@@ -13,6 +13,7 @@ public enum StoryProgression {
 public class StaticSceneInformation
 {
 
-    // public static StoryProgression currentProgression = StoryProgression.Prologue;
-    public static StoryProgression currentProgression = StoryProgression.DayOneNight;
+    public static StoryProgression currentProgression = StoryProgression.DayOne;
+
+    // public static StoryProgression currentProgression = StoryProgression.DayOneNight;
 }

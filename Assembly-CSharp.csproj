@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\cutscenes\OnTimelineFinish.cs" />
+    <Compile Include="Assets\EvaluateStoryBillstedt.cs" />
     <Compile Include="Assets\FightController.cs" />
     <Compile Include="Assets\SoundEmitter.cs" />
     <Compile Include="Assets\CameraFocusPoint.cs" />
@@ -83,7 +84,6 @@
     <Compile Include="Assets\EnterableDoor.cs" />
     <Compile Include="Assets\Parallax.cs" />
     <Compile Include="Assets\FadeTransition.cs" />
-    <Compile Include="Assets\EvaluateStory.cs" />
     <Compile Include="Assets\StaticSceneInformation.cs" />
     <Compile Include="Assets\Fading.cs" />
     <Compile Include="Assets\cutscenes\DialogueSignalManager.cs" />
