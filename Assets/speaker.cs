@@ -19,6 +19,7 @@ enum People
     LeoTshirt,
     Mystery,
     RamzaHoholla,
+    LeoNightguard,
 }
 
 enum Emotion {

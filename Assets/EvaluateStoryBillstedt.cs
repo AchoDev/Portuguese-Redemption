@@ -23,7 +23,6 @@ public class EvaluateStoryBillstedt : MonoBehaviour
     [SerializeField] Light2D globalLight;
     [SerializeField] float nightLightIntensity = 0.1f;
     [SerializeField] Camera mainCamera;
-    [SerializeField] GameObject nightOverlay;
     [SerializeField] Color skyColor;
     [SerializeField] GameObject LeoNightguard;
 
@@ -63,7 +62,6 @@ public class EvaluateStoryBillstedt : MonoBehaviour
                 ActivateCharacter(LeoNightguard);
                 globalLight.intensity = nightLightIntensity;
                 mainCamera.backgroundColor = skyColor;
-                nightOverlay.SetActive(true);
                 break;
         }
     }
