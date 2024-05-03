@@ -58,6 +58,9 @@ public class speaker : MonoBehaviour
     [SerializeField] bool leaveLoopAfterFinsh = false;
     [Range(0, 100f)] public float timeBetweenLetters = 25;
     float timeBetweenLettersOriginal;
+    public bool talkByInteracting = true;
+    [SerializeField] bool talkByTrigger = false;
+    [SerializeField] bool destroyAfterFinish = false;
     [SerializeField] UnityEvent onDialogueFinish;
 
     [Space(10)]
@@ -66,7 +69,6 @@ public class speaker : MonoBehaviour
     [SerializeField, Range(0.1f, 5f)] float cameraSpeed = 1f;
     [SerializeField, Range(0.1f, 5)] float ortho = 2.5f;
 
-    public bool talkByInteracting = true;
 
     [Space(10)]
     [Header("Dialogue")]
@@ -127,6 +129,11 @@ public class speaker : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if(talkByTrigger && !talking)
+        {
+            initiateTalk();
+            return;
+        } 
         if(!talkByInteracting) return;
         if(other.CompareTag("Player"))
         {
@@ -281,6 +288,10 @@ public class speaker : MonoBehaviour
         timeBetweenLetters = timeBetweenLettersOriginal;
         if(leaveLoopAfterFinsh) {
             LoopBehaviour.leave = true;
+        }
+
+        if(destroyAfterFinish) {
+            Destroy(gameObject);
         }
     }
 

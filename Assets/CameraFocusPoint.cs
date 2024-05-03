@@ -48,6 +48,9 @@ public class CameraFocusPoint : MonoBehaviour
 
     void Update()
     {
+        if(player.activeSelf == false) {
+            player = GameObject.FindWithTag("Player");
+        }
 
         if(!allowFocus) {
             Unfocus();

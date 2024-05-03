@@ -25,6 +25,7 @@ public class EvaluateStoryBillstedt : MonoBehaviour
     [SerializeField] Camera mainCamera;
     [SerializeField] Color skyColor;
     [SerializeField] GameObject LeoNightguard;
+    [SerializeField] GameObject nightCutsceneTrigger;
 
     [Header("Story start")]
     [SerializeField] StoryProgression storyProgression;
@@ -62,6 +63,8 @@ public class EvaluateStoryBillstedt : MonoBehaviour
                 ActivateCharacter(LeoNightguard);
                 globalLight.intensity = nightLightIntensity;
                 mainCamera.backgroundColor = skyColor;
+                nightCutsceneTrigger.SetActive(true);
+                Leon.SetActive(false);
                 break;
         }
     }

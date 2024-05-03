@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class OnTriggerEnter : MonoBehaviour
 {
 
@@ -29,5 +30,9 @@ public class OnTriggerEnter : MonoBehaviour
         {
             onTriggerExit.Invoke();
         }
+    }
+
+    void Reset() {
+        GetComponent<BoxCollider2D>().isTrigger = true;
     }
 }
