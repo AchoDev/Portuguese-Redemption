@@ -6973,6 +6973,7 @@ Transform:
   - {fileID: 721207908}
   - {fileID: 881461126}
   - {fileID: 2023713937}
+  - {fileID: 726009312}
   m_Father: {fileID: 948154770}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &558974988
@@ -8637,6 +8638,82 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &688811103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 688811107}
+  - component: {fileID: 688811106}
+  - component: {fileID: 688811104}
+  - component: {fileID: 688811105}
+  m_Layer: 0
+  m_Name: dialogue manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &688811104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688811103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals: []
+    m_Events: []
+--- !u!114 &688811105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688811103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11924a29d342a9e4487b87c4b94772c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signalAsset: {fileID: 11400000, guid: 7c6a640c8d29b8f44bdaccb147bc2533, type: 2}
+  manager: {fileID: 688811106}
+--- !u!114 &688811106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688811103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da886dadf7edd81478b2e601b707e9ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &688811107
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688811103}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1168717819}
+  m_Father: {fileID: 1332592577}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &691415324
 GameObject:
   m_ObjectHideFlags: 0
@@ -9565,12 +9642,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726009310}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 153.259, y: 190.153, z: -1.428}
-  m_LocalScale: {x: 0.023470398, y: 0.023470398, z: 0.023470398}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.1192343, y: -1.8046936, z: -11.5465555}
+  m_LocalScale: {x: 0.08917123, y: 0.08917123, z: 0.08917123}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 558691851}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &732237695
 GameObject:
@@ -12071,7 +12148,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.01
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: c197dcc900000000135f0fce0f32d97d315b2a42
@@ -14376,7 +14453,7 @@ PlayableDirector:
     value: {fileID: 1876014685}
   - key: {fileID: 4518412974210277649, guid: 18540d57e62af3a4fa7e434451bb3bb4, type: 2}
     value: {fileID: 698893553}
-  - key: {fileID: 7405970321743723950, guid: 18540d57e62af3a4fa7e434451bb3bb4, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 1601574933}
   - key: {fileID: 4902380268129823455, guid: 18540d57e62af3a4fa7e434451bb3bb4, type: 2}
     value: {fileID: 1782451253}
@@ -15328,6 +15405,172 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1168717818
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1168717819}
+  - component: {fileID: 1168717821}
+  - component: {fileID: 1168717820}
+  m_Layer: 0
+  m_Name: dialogue0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1168717819
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168717818}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 688811107}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1168717820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168717818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89ac3b2fac4724c8e983de2635845c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initiator: {fileID: 0}
+  turnTowardsPlayer: 0
+  isMystery: 0
+  setAnimatorTalking: 0
+  leaveLoopAfterFinsh: 1
+  timeBetweenLetters: 25
+  talkByInteracting: 0
+  talkByTrigger: 0
+  destroyAfterFinish: 0
+  onDialogueFinish:
+    m_PersistentCalls:
+      m_Calls: []
+  focusCamera: 0
+  cameraSpeed: 1
+  ortho: 2.5
+  dialogue:
+  - name: 8
+    dialogue: So Leo, this is the "Security Room"
+    emotion: 0
+    leaveLoop: 0
+  - name: 8
+    dialogue: Here, you'll have to sit and check the cameras for anything
+    emotion: 0
+    leaveLoop: 0
+  - name: 8
+    dialogue: Criminals, burgulurars and whatever. The crime rate may not be as high
+      as Mummelmansberg, but there still is some
+    emotion: 0
+    leaveLoop: 0
+  - name: 8
+    dialogue: I've been robbed before, nasty thing
+    emotion: 0
+    leaveLoop: 0
+  - name: 9
+    dialogue: Alright, okay. And what are these controls here for?
+    emotion: 0
+    leaveLoop: 0
+  - name: 8
+    dialogue: 'Oh yeah, the one up above is a microphone and speaker. I''ll periodically
+      call in to check in on you. '
+    emotion: 0
+    leaveLoop: 0
+  - name: 8
+    dialogue: Just press the button and speak back
+    emotion: 0
+    leaveLoop: 1
+  - name: 8
+    dialogue: 'These white buttons are for the light in this room. '
+    emotion: 0
+    leaveLoop: 0
+  - name: 8
+    dialogue: The red button closes a security door behind you. DON'T use this button,
+      unless you truly HAVE TO
+    emotion: 0
+    leaveLoop: 0
+  - name: 9
+    dialogue: Oh okay...
+    emotion: 0
+    leaveLoop: 0
+  - name: 9
+    dialogue: Wait.. why is there this door right behind me?
+    emotion: 0
+    leaveLoop: 0
+  - name: 8
+    dialogue: Ah... a small design flaw.
+    emotion: 0
+    leaveLoop: 0
+  - name: 8
+    dialogue: Doesn't matter though, I haven't seen any break in's in a couple years,
+      so you shouldn't worry too much about it
+    emotion: 0
+    leaveLoop: 0
+  - name: 8
+    dialogue: 'That sounds good, '
+    emotion: 0
+    leaveLoop: 0
+--- !u!61 &1168717821
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168717818}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1170489652
 GameObject:
   m_ObjectHideFlags: 0
@@ -22148,6 +22391,129 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1332592573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1332592577}
+  - component: {fileID: 1332592576}
+  - component: {fileID: 1332592575}
+  - component: {fileID: 1332592574}
+  m_Layer: 0
+  m_Name: enter security room cutscene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1332592574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332592573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5ee92d7d7eb5de42aa50ef752a53a45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTimelineFinish:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2017567433}
+        m_TargetAssemblyTypeName: UnityEngine.Playables.PlayableDirector, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 756136098}
+        m_TargetAssemblyTypeName: CameraFocusPoint, Assembly-CSharp
+        m_MethodName: enableFocus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 756136098}
+        m_TargetAssemblyTypeName: CameraFocusPoint, Assembly-CSharp
+        m_MethodName: Focus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1332592575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332592573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 900f9813282ad454e975740b92cd2d97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!320 &1332592576
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332592573}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 18540d57e62af3a4fa7e434451bb3bb4, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 7255740299923974443, guid: 18540d57e62af3a4fa7e434451bb3bb4, type: 2}
+    value: {fileID: 1876014685}
+  - key: {fileID: 4518412974210277649, guid: 18540d57e62af3a4fa7e434451bb3bb4, type: 2}
+    value: {fileID: 698893553}
+  - key: {fileID: 4902380268129823455, guid: 18540d57e62af3a4fa7e434451bb3bb4, type: 2}
+    value: {fileID: 1782451253}
+  - key: {fileID: -465656328837210905, guid: 18540d57e62af3a4fa7e434451bb3bb4, type: 2}
+    value: {fileID: 688811104}
+  m_ExposedReferences:
+    m_References: []
+--- !u!4 &1332592577
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332592573}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 125.16, y: 179.35, z: -2.598578}
+  m_LocalScale: {x: 0.13621293, y: 0.13621293, z: 0.13621293}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 688811107}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1333431741
 GameObject:
   m_ObjectHideFlags: 0
@@ -28747,7 +29113,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 19.19, y: 0.919, z: -4.6}
-  m_LocalScale: {x: 0.10812755, y: 0.10812755, z: 0.10812755}
+  m_LocalScale: {x: 0.1081275, y: 0.10812755, z: 0.1081275}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 414103544}
@@ -37065,6 +37431,6 @@ SceneRoots:
   - {fileID: 1745654332}
   - {fileID: 1068998683}
   - {fileID: 2017567432}
+  - {fileID: 1332592577}
   - {fileID: 1339281966}
   - {fileID: 115771241}
-  - {fileID: 726009312}
