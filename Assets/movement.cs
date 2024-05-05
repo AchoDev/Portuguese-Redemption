@@ -71,7 +71,7 @@ public class movement : MonoBehaviour
             0.1f
         );
         
-        if(!allowMovement) return;
+        if(!allowMovement) moveDirection = 0;
 
         rb.velocity = new Vector2(moveDirection * speed * (sprinting && !driving ? sprintMultiplier : 1) * (driving ? driveMultiplier : 1), rb.velocity.y);
 

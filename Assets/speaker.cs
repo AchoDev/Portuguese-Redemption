@@ -161,6 +161,8 @@ public class speaker : MonoBehaviour
         currentIndex = 0;
 
         playerMovement.allowMovement = false;
+        playerMovement.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        
 
         if(setAnimatorTalking) {
             initiator.GetComponent<Animator>().SetBool("talking", true);
