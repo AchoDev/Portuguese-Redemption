@@ -275,7 +275,7 @@ public class speaker : MonoBehaviour
         talking = false;
         currentLine = 0;
         canvasAnimator.SetBool("speaking", false);
-        // playerMovement.allowMovement = true;
+        playerMovement.allowMovement = true;
         cameraFocusPoint.Unfocus();
 
         StartCoroutine(waitBeforeEnd(dialogue[dialogue.Length - 1].name.ToString()));

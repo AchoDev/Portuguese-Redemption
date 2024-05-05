@@ -14,10 +14,15 @@ public class CameraOffset : MonoBehaviour
     CinemachineFramingTransposer tempTransposer; 
     GameObject player;
 
+
     bool focused = false;
 
     [SerializeField] float offsetX;
     [SerializeField] float offsetY;
+
+    [Header("Cam conginer settings")]
+    [SerializeField] Collider2D boundingBox;
+    [SerializeField, Range(0, 5)] float damping = 0.5f;
 
     void OnTriggerEnter2D(Collider2D other) 
     {
@@ -47,6 +52,14 @@ public class CameraOffset : MonoBehaviour
         tempCamera.tag = "TempCMVcam";
 
         tempTransposer = tempCamera.AddCinemachineComponent<CinemachineFramingTransposer>();
+
+        if(boundingBox != null) 
+        {
+            CinemachineConfiner2D tempConfiner = tempCamera.gameObject.AddComponent<CinemachineConfiner2D>();
+            tempConfiner.m_BoundingShape2D = boundingBox;
+            tempConfiner.m_Damping = damping;
+        }
+
     }
 
     // Update is called once per frame
@@ -93,6 +106,9 @@ public class CameraOffset : MonoBehaviour
     public void Unfocus() 
     {
         focused = false;
+
+        mainCamera.gameObject.SetActive(true);
+        tempCamera.gameObject.SetActive(false);
     }
 
     void Reset()
