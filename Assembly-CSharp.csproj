@@ -72,6 +72,7 @@
     <Compile Include="Assets\speaker.cs" />
     <Compile Include="Assets\cutscenes\DialogueCutsceneManager.cs" />
     <Compile Include="Assets\FightConductor.cs" />
+    <Compile Include="Assets\FlightController.cs" />
     <Compile Include="Assets\CameraOffset.cs" />
     <Compile Include="Assets\Cutscene.cs" />
     <Compile Include="Assets\NPCFightController.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Assets\StaticSceneInformation.cs" />
     <Compile Include="Assets\Fading.cs" />
     <Compile Include="Assets\cutscenes\DialogueSignalManager.cs" />
+    <Compile Include="Assets\LockRotation.cs" />
     <Compile Include="Assets\cutscenes\LoopScript.cs" />
     <Compile Include="Assets\movement.cs" />
     <Compile Include="Assets\SoundManager.cs" />
