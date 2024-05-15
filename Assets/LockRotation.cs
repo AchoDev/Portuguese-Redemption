@@ -10,4 +10,3 @@ public class LockRotation : MonoBehaviour
         transform.rotation = Quaternion.identity;
     }
 }
-s
