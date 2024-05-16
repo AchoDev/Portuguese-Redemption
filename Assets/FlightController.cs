@@ -46,7 +46,7 @@ public class FlightController : MonoBehaviour
         } else if(flightDirection == -1)
         {
             yForce *= diveMultiplier;
-            // xForce *= diveMultiplier;
+            xForce = 0;
         }
 
         yForce += gravity * 1.3f;
