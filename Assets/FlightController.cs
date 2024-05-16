@@ -13,6 +13,7 @@ public class FlightController : MonoBehaviour
     [SerializeField] float liftForce = 100f;
     [SerializeField] float speedForce = 100f;
     [SerializeField] float diveMultiplier = 4f;
+    [SerializeField] float diveDrag = 0.3f; 
     [SerializeField, Range(0, 0.1f)] float horizontalSpeedMultiplier = 4f;
 
     // Start is called before the first frame update
@@ -41,14 +42,16 @@ public class FlightController : MonoBehaviour
         if(flightDirection == 1)
         {
             yForce *= diveMultiplier;
-            xForce /= diveMultiplier;
+            xForce = -rb.velocity.x * diveDrag;
         } else if(flightDirection == -1)
         {
             yForce *= diveMultiplier;
             // xForce *= diveMultiplier;
         }
 
-        yForce += gravity;
+        yForce += gravity * 1.3f;
+
+        Debug.Log($"xForce: {xForce}, yForce: {yForce}");
 
         rb.AddForce(new Vector2(xForce, yForce));
     }

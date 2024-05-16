@@ -8,6 +8,7 @@ public enum StoryProgression {
     DefeatRamza,
     DayOneAfternoon,
     DayOneNight,
+    DayTwoFlight,
 }
 
 public class StaticSceneInformation

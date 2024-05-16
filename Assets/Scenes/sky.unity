@@ -2029,9 +2029,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   liftForce: 12.1
-  speedForce: 0.39
+  speedForce: 0.31
   diveMultiplier: 4
-  horizontalSpeedMultiplier: 0.0527
+  diveDrag: 0.96
+  horizontalSpeedMultiplier: 0.0569
 --- !u!50 &943368254
 Rigidbody2D:
   serializedVersion: 4
@@ -2045,7 +2046,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0.59
+  m_LinearDrag: 0.15
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class EvaluateStoryBillstedt : MonoBehaviour
 {
 
+    float normalOrtho;
+
     
     [Header("General things")]
     [SerializeField] PlayableDirector DefeatRamzaCutscene;
@@ -27,36 +29,43 @@ public class EvaluateStoryBillstedt : MonoBehaviour
     [SerializeField] GameObject LeoNightguard;
     [SerializeField] GameObject nightCutsceneTrigger;
 
+    [Header("Day two flight (5)")]
+    [SerializeField] GameObject LeoSuperhero;
+    [SerializeField] float ortho;
+
+
     [Header("Story start")]
     [SerializeField] StoryProgression storyProgression;
 
     void Awake()
     {
         StaticSceneInformation.currentProgression = storyProgression;
+        normalOrtho = VirtualCamera.m_Lens.OrthographicSize;
+        
         Evaluate();
     }
 
     public void Evaluate()
     {
         StoryProgression progression = sceneManager.GetStoryProgression();
+
+        globalLight.intensity = 1;
+        VirtualCamera.m_Lens.OrthographicSize = normalOrtho;
+
         switch (progression)
         {
             case StoryProgression.Prologue:
                 // ActivateCharacter(LeoTshirt);
-                globalLight.intensity = 1;
                 break;
             case StoryProgression.DayOne:
                 ActivateCharacter(LeoTshirt);
-                globalLight.intensity = 1;
                 break;
             case StoryProgression.DefeatRamza:
                 ActivateCharacter(LeoTshirt);
-                globalLight.intensity = 1;
                 DefeatRamzaCutscene.Play();
                 break;
             case StoryProgression.DayOneAfternoon:
                 ActivateCharacter(LeoTshirt);
-                globalLight.intensity = 1;
                 break;
 
             case StoryProgression.DayOneNight:
@@ -66,6 +75,11 @@ public class EvaluateStoryBillstedt : MonoBehaviour
                 nightCutsceneTrigger.SetActive(true);
                 Leon.SetActive(false);
                 break;
+
+            case StoryProgression.DayTwoFlight:
+                ActivateCharacter(LeoSuperhero);
+                VirtualCamera.m_Lens.OrthographicSize = ortho;
+                break;
         }
     }
 
@@ -73,6 +87,7 @@ public class EvaluateStoryBillstedt : MonoBehaviour
     {
         LeoTshirt.SetActive(false);
         LeoNightguard.SetActive(false);
+        LeoSuperhero.SetActive(false);
         character.SetActive(true);
         VirtualCamera.Follow = character.transform;
     }
