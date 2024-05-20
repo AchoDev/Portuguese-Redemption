@@ -12,9 +12,13 @@ public class Parallax : MonoBehaviour
     float startY, startOrtho;
     Vector3 startSize;
 
-    void Start()
+    void Awake() 
     {
         startOrtho = Camera.main.orthographicSize;
+    }
+
+    void Start()
+    {
         startSize = transform.localScale;
         startY = cam.transform.position.y;
         startpos = transform.position.x;
@@ -25,6 +29,8 @@ public class Parallax : MonoBehaviour
     {
         float temp = (cam.transform.position.x * (1 - parallaxEffect));
         float dist = (cam.transform.position.x * parallaxEffect);
+
+        length = GetComponent<SpriteRenderer>().bounds.size.x * transform.localScale.x;
 
         transform.position = new Vector3(startpos + dist, cam.transform.position.y, transform.position.z);
         transform.localScale = startSize * (Camera.main.orthographicSize / startOrtho);

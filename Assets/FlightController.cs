@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Hardware;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -14,18 +15,13 @@ public class FlightController : MonoBehaviour
 
     [SerializeField] float liftForce = 100f;
     [SerializeField] float speedForce = 100f;
-    [SerializeField] float diveMultiplier = 4f;
-    [SerializeField] float diveDrag = 0.3f; 
-    [SerializeField, Range(0, 0.1f)] float horizontalSpeedMultiplier = 4f;
-
     [SerializeField] float boostForce = 100f;
 
     [SerializeField] float rotationAmount = 2f;
-    [SerializeField] float rotationMultiplier = 0.1f;
     [SerializeField] float upliftMultiplier = 2f;
     [SerializeField] float upliftDrag = 2f;
 
-    
+    bool dead = false;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -36,6 +32,7 @@ public class FlightController : MonoBehaviour
             rb.AddForce(Vector2.right * 20 / rb.velocity.x, ForceMode2D.Impulse);
             transform.rotation = Quaternion.Euler(0, 0, 0);
             // rb.freezeRotation = true;
+            dead = true;
         }
     }
     
@@ -61,6 +58,7 @@ public class FlightController : MonoBehaviour
         {
             rb.AddForce(Vector2.right * boostForce, ForceMode2D.Impulse);
             animator.SetTrigger("boost");
+            dead = false;
         }
 
     }
@@ -88,13 +86,21 @@ public class FlightController : MonoBehaviour
         float xForce = -rb.velocity.y * speedForce;
         float yForce = liftForce * rb.velocity.x;
 
-        if(flightDirection == -1)
+        if(flightDirection == -1 || dead)
         {
             yForce = 0;
             xForce = 0;
         } else if(flightDirection == 1) {
-            yForce *= upliftMultiplier;
-            xForce /= upliftDrag;
+            yForce += upliftMultiplier * rb.velocity.x;
+            float newXForce = -upliftDrag * Mathf.Max(0, rb.velocity.y);
+            if(newXForce > 0) {
+                xForce = newXForce;
+            }
+
+
+            if(rb.velocity.y > 0 && yForce < 0.1) {
+                animator.SetTrigger("flip");
+            }
         }
 
  
