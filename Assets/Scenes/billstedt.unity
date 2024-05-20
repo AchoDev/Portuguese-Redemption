@@ -15838,7 +15838,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1135364368}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.06287037, w: 0.9980217}
+  m_LocalRotation: {x: -0, y: -0, z: -0.08243717, w: -0.9965963}
   m_LocalPosition: {x: 2.7705047, y: -0.0000016577766, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15847,7 +15847,7 @@ Transform:
   - {fileID: 933948880}
   - {fileID: 1546079325}
   m_Father: {fileID: 1996231056}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -350.543}
 --- !u!1 &1145725747
 GameObject:
   m_ObjectHideFlags: 0
@@ -25067,7 +25067,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0.15
+  m_LinearDrag: 0.09
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -25151,14 +25151,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c0b55bab585ab47bcb3276394cb3a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  liftForce: 8.4
-  speedForce: 0.71
-  diveMultiplier: 4
+  liftForce: 0.86
+  speedForce: 0.23
+  diveMultiplier: 11.2
   diveDrag: 1.35
   horizontalSpeedMultiplier: 0.0569
   boostForce: 10
-  rotationAmount: 3.5
-  rotationMultiplier: 78.1
+  rotationAmount: 3.08
+  rotationMultiplier: 11.9
+  upliftMultiplier: 2.3
+  upliftDrag: 10
 --- !u!212 &1459223471
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -25229,8 +25231,8 @@ Transform:
   - {fileID: 1471429139}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -94.862}
---- !u!61 &1459223473
-BoxCollider2D:
+--- !u!58 &1459223473
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -25261,19 +25263,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.34235632, y: -0.96584415}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 20.48, y: 20.48}
-    newSize: {x: 20.48, y: 20.48}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: -0.33768487, y: 2.5880454}
   serializedVersion: 2
-  m_Size: {x: 5.7507687, y: 16.934359}
-  m_EdgeRadius: 0
+  m_Radius: 2.0067558
 --- !u!1 &1465642977
 GameObject:
   m_ObjectHideFlags: 0

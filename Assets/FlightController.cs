@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -21,6 +22,8 @@ public class FlightController : MonoBehaviour
 
     [SerializeField] float rotationAmount = 2f;
     [SerializeField] float rotationMultiplier = 0.1f;
+    [SerializeField] float upliftMultiplier = 2f;
+    [SerializeField] float upliftDrag = 2f;
 
     
 
@@ -66,34 +69,38 @@ public class FlightController : MonoBehaviour
     //     rb.AddForce(transform.forward * liftForce, ForceMode2D.Impulse);
     // }
 
+    float xForceFunction(float x)
+    {
+        // return -2 * (x * x) + 0.5f;
+        return (float)Math.Pow(System.Math.E, -Math.Pow(5 * x, 2));
+    }
+
     void FixedUpdate() 
     {
         float gravity = -9.81f;
 
-        float rotation = Mathf.Clamp(rb.velocity.y * rotationAmount - 90, -180, 0);
-        
-        rotation += rotationMultiplier * flightDirection;
-        
+        float rotation = Mathf.Clamp(rb.velocity.y * rotationAmount - 90, -180, 0);        
         float rotationPercentage = (rotation + 1 + 180) / 180;
 
-        float xForce = Mathf.Max(0, -rb.velocity.y * speedForce * rotationPercentage);
-        float yForce = liftForce * (rb.velocity.x * horizontalSpeedMultiplier) * (1 - rotationPercentage);
+        // float xForce = -rb.velocity.y * speedForce * xForceFunction(rotationPercentage - 0.5f);
+        // float yForce = liftForce * (rb.velocity.x * horizontalSpeedMultiplier) * (1 - rotationPercentage);
 
-        // if(flightDirection == 1)
-        // {
-        //     yForce *= diveMultiplier;
-        //     xForce = -rb.velocity.x * diveDrag;
-        // } else if(flightDirection == -1)
-        // {
-        //     yForce *= diveMultiplier;
-        //     xForce = 0;
-        // }
+        float xForce = -rb.velocity.y * speedForce;
+        float yForce = liftForce * rb.velocity.x;
 
+        if(flightDirection == -1)
+        {
+            yForce = 0;
+            xForce = 0;
+        } else if(flightDirection == 1) {
+            yForce *= upliftMultiplier;
+            xForce /= upliftDrag;
+        }
 
-
+ 
         yForce += gravity * 1.3f;
 
-        Debug.Log($"xForce: {xForce}, yForce: {yForce}, rotation: {rotation}, rotationPercentage: {rotationPercentage}");
+        Debug.Log($"xForce: {xForce}, yForce: {yForce}, rotation: {rotation}, rotationPercentage: {rotationPercentage}, xForceFunction: {xForceFunction(rotationPercentage - 0.5f)}");
 
         rb.AddForce(new Vector2(xForce, yForce));
 
