@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Unity.VisualScripting;
 using UnityEditor.Hardware;
 using UnityEditor.Rendering;
@@ -33,6 +34,7 @@ public class FlightController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
             // rb.freezeRotation = true;
             dead = true;
+            GetComponent<CinemachineImpulseSource>().GenerateImpulse();
         }
     }
     
