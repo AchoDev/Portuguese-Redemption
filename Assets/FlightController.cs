@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -16,7 +17,20 @@ public class FlightController : MonoBehaviour
     [SerializeField] float diveDrag = 0.3f; 
     [SerializeField, Range(0, 0.1f)] float horizontalSpeedMultiplier = 4f;
 
+    [SerializeField] float boostForce = 100f;
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Ground")
+        {
+            animator.SetTrigger("fall");
+        }
+    }
+    
+
     // Start is called before the first frame update
+    
+    
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -30,7 +44,17 @@ public class FlightController : MonoBehaviour
     {
         flightDirection = -(int)Input.GetAxisRaw("Vertical");
         animator.SetInteger("flightDirection", flightDirection);
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(transform.forward * boostForce, ForceMode2D.Impulse);
+            animator.SetTrigger("boost");
+        }
     }
+
+    // public void Boost() {
+    //     rb.AddForce(transform.forward * liftForce, ForceMode2D.Impulse);
+    // }
 
     void FixedUpdate() 
     {

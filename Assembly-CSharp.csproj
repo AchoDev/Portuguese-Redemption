@@ -86,6 +86,7 @@
     <Compile Include="Assets\EnterableDoor.cs" />
     <Compile Include="Assets\Parallax.cs" />
     <Compile Include="Assets\FadeTransition.cs" />
+    <Compile Include="Assets\test.cs" />
     <Compile Include="Assets\StaticSceneInformation.cs" />
     <Compile Include="Assets\Fading.cs" />
     <Compile Include="Assets\cutscenes\DialogueSignalManager.cs" />

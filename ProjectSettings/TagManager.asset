@@ -9,6 +9,7 @@ TagManager:
   - Scooter
   - TempCMVcam
   - SoundManager
+  - Ground
   layers:
   - Default
   - TransparentFX
