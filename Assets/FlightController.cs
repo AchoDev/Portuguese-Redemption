@@ -19,11 +19,20 @@ public class FlightController : MonoBehaviour
 
     [SerializeField] float boostForce = 100f;
 
+    [SerializeField] float rotationAmount = 2f;
+    [SerializeField] float rotationMultiplier = 0.1f;
+
+    
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Ground")
         {
             animator.SetTrigger("fall");
+            // rb.velocity = Vector2.zero;
+            rb.AddForce(Vector2.right * 20 / rb.velocity.x, ForceMode2D.Impulse);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            // rb.freezeRotation = true;
         }
     }
     
@@ -47,9 +56,10 @@ public class FlightController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(transform.forward * boostForce, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.right * boostForce, ForceMode2D.Impulse);
             animator.SetTrigger("boost");
         }
+
     }
 
     // public void Boost() {
@@ -60,23 +70,33 @@ public class FlightController : MonoBehaviour
     {
         float gravity = -9.81f;
 
-        float xForce = Mathf.Max(0, -rb.velocity.y * speedForce);
-        float yForce = liftForce * (flightDirection + 1) * (rb.velocity.x * horizontalSpeedMultiplier);
+        float rotation = Mathf.Clamp(rb.velocity.y * rotationAmount - 90, -180, 0);
+        
+        rotation += rotationMultiplier * flightDirection;
+        
+        float rotationPercentage = (rotation + 1 + 180) / 180;
 
-        if(flightDirection == 1)
-        {
-            yForce *= diveMultiplier;
-            xForce = -rb.velocity.x * diveDrag;
-        } else if(flightDirection == -1)
-        {
-            yForce *= diveMultiplier;
-            xForce = 0;
-        }
+        float xForce = Mathf.Max(0, -rb.velocity.y * speedForce * rotationPercentage);
+        float yForce = liftForce * (rb.velocity.x * horizontalSpeedMultiplier) * (1 - rotationPercentage);
+
+        // if(flightDirection == 1)
+        // {
+        //     yForce *= diveMultiplier;
+        //     xForce = -rb.velocity.x * diveDrag;
+        // } else if(flightDirection == -1)
+        // {
+        //     yForce *= diveMultiplier;
+        //     xForce = 0;
+        // }
+
+
 
         yForce += gravity * 1.3f;
 
-        Debug.Log($"xForce: {xForce}, yForce: {yForce}");
+        Debug.Log($"xForce: {xForce}, yForce: {yForce}, rotation: {rotation}, rotationPercentage: {rotationPercentage}");
 
         rb.AddForce(new Vector2(xForce, yForce));
+
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Clamp(rb.velocity.y * rotationAmount - 90, -180, 0));
     }
 }

@@ -65,7 +65,7 @@ public class CameraOffset : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(player.activeSelf == false) {
+        if(player != null && player.activeSelf == false) {
             player = GameObject.FindWithTag("Player");
         }
 
