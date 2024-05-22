@@ -26,6 +26,11 @@ public class movement : MonoBehaviour
 
     SoundManager soundManager;
 
+    public void setMovement(bool value) 
+    {
+        allowMovement = value;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

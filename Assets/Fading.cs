@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,9 @@ public class Fading : MonoBehaviour
     float defaultDuration = 0.5f;
 
     Image image;
+
+    [SerializeField] List<Image> subImages;
+    [SerializeField] List<TextMeshProUGUI> subTexts;
 
     float frameCount = 100f;
 
@@ -58,6 +62,21 @@ public class Fading : MonoBehaviour
             Color c = image.color;
             c.a = f;
             image.color = c;
+
+            foreach (Image subImage in subImages)
+            {
+                Color subC = subImage.color;
+                subC.a = f;
+                subImage.color = subC;
+            }
+
+            foreach (TextMeshProUGUI subText in subTexts)
+            {
+                Color subC = subText.color;
+                subC.a = f;
+                subText.color = subC;
+            }
+
             yield return new WaitForSeconds(timeBetweenFrames);
         }
     }
@@ -71,6 +90,21 @@ public class Fading : MonoBehaviour
             Color c = image.color;
             c.a = f;
             image.color = c;
+         
+            foreach (Image subImage in subImages)
+            {
+                Color subC = subImage.color;
+                subC.a = f;
+                subImage.color = subC;
+            }
+
+            foreach (TextMeshProUGUI subText in subTexts)
+            {
+                Color subC = subText.color;
+                subC.a = f;
+                subText.color = subC;
+            }
+
             yield return new WaitForSeconds(timeBetweenFrames);
         }
     }
