@@ -113,9 +113,8 @@ public class speaker : MonoBehaviour
         textBox = GameObject.Find("Canvas/dialogue/content").GetComponent<TextMeshProUGUI>();
         nameBox = GameObject.Find("Canvas/dialogue/name").GetComponent<TextMeshProUGUI>();
         
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        playerMovement = player.GetComponent<movement>();
-        eIndicator = player.transform.Find("indicator").gameObject;
+        // GameObject player = GameObject.FindGameObjectWithTag("Player");
+        
 
         cameraFocusPoint = gameObject.AddComponent<CameraFocusPoint>();
         cameraFocusPoint.cameraSpeed = cameraSpeed;
@@ -215,6 +214,18 @@ public class speaker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        if(playerMovement == null) // if player is destroyed while talking
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if(player != null)
+            {
+                playerMovement = player.GetComponent<movement>();
+                eIndicator = player.transform.Find("indicator").gameObject;
+            } 
+        }
+
+
         if(talking)  {
 
             string formattedText = currentText;

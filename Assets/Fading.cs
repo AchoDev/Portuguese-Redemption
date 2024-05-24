@@ -33,6 +33,18 @@ public class Fading : MonoBehaviour
         StartCoroutine(FadeOut());
     }
 
+    public void FadeInOutAsync()
+    {
+        StartCoroutine(FadeInOut());
+    }
+
+    public IEnumerator FadeInOut()
+    {
+        yield return StartCoroutine(InitiateFadeIn(defaultDuration));
+        yield return new WaitForSeconds(0.5f);
+        yield return StartCoroutine(InitiateFadeOut(defaultDuration));
+    }
+
     public IEnumerator FadeOut() 
     {
         yield return StartCoroutine(InitiateFadeOut(defaultDuration));

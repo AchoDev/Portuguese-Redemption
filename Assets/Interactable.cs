@@ -31,11 +31,14 @@ public class Interactable : MonoBehaviour
     
     void Start()
     {
-        indicator = GameObject.FindWithTag("Player").transform.Find("indicator").gameObject;
     }
 
     void Update()
     {
+        if(indicator == null) {
+            GameObject player = GameObject.FindWithTag("Player");
+            if(player != null) indicator = player.transform.Find("indicator").gameObject;
+        }
         if(!isInteractable) return;
         indicator.SetActive(true);
 

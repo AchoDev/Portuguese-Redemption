@@ -36,14 +36,17 @@ public class EnterableDoor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
         blackScreen = GameObject.Find("blackscreen").GetComponent<Fading>();
-        indicator = player.gameObject.transform.Find("indicator").gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(player == null) {
+            player = GameObject.FindWithTag("Player");
+            if(player != null) indicator = player.gameObject.transform.Find("indicator").gameObject;
+        }
+
         if(!openable) return;
 
         indicator.SetActive(true);

@@ -5,6 +5,7 @@ using Cinemachine;
 using Unity.VisualScripting;
 using UnityEditor.Hardware;
 using UnityEditor.Rendering;
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 
 public class FlightController : MonoBehaviour
@@ -14,6 +15,9 @@ public class FlightController : MonoBehaviour
     Rigidbody2D rb;
     int flightDirection = 0;
 
+    
+    [SerializeField] Transform startPoint;
+    [Space(10)]
     [SerializeField] float liftForce = 100f;
     [SerializeField] float speedForce = 100f;
     [SerializeField] float boostForce = 100f;
@@ -22,7 +26,12 @@ public class FlightController : MonoBehaviour
     [SerializeField] float upliftMultiplier = 2f;
     [SerializeField] float upliftDrag = 2f;
 
+    [SerializeField] float jumpForce = 10f;
+
+    bool gameStarted = false;
+    bool diving = false;
     bool dead = false;
+    Vector3 rotationVel = Vector3.zero;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -41,13 +50,52 @@ public class FlightController : MonoBehaviour
 
     // Start is called before the first frame update
     
-    
+    public void StartInitialDive()
+    {
+        diving = true;
+    }
+
+    public void InspectWingsuit()
+    {
+        animator.SetBool("checkingWingsuit", true);
+    }
+
+    public void StopInspectingWingsuit()
+    {
+        animator.SetBool("checkingWingsuit", false);
+    }
+
+    public void StartGame() 
+    {
+        transform.localScale = Vector3.Scale(transform.localScale, new Vector3(-1, 1, 1));
+        animator.SetTrigger("startGame");
+        transform.position = startPoint.position;
+    }
+
+    public void WingsuitDeployed()
+    {
+        animator.SetBool("gameStarted", true);
+    }
+
+    public void Jump()
+    {
+        gameStarted = true;
+        rb.simulated = true;
+        GetComponent<CircleCollider2D>().enabled = true;
+        rb.AddForce(new Vector2(1f, 50.5f) * jumpForce, ForceMode2D.Force);
+    }
+
+    public void StartDiving()
+    {
+        diving = true;
+    }
+
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
-        rb.AddForce(10 * Vector2.right, ForceMode2D.Impulse);
+        // rb.AddForce(10 * Vector2.right, ForceMode2D.Impulse);
     }
 
     // Update is called once per frame
@@ -58,9 +106,15 @@ public class FlightController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(Vector2.right * boostForce, ForceMode2D.Impulse);
-            animator.SetTrigger("boost");
-            dead = false;
+            animator.SetTrigger("space");
+        
+            if(diving) {
+                gameStarted = true;
+                diving = false;
+            } else {
+                rb.AddForce(Vector2.right * boostForce, ForceMode2D.Impulse);
+            }
+
         }
 
     }
@@ -75,7 +129,7 @@ public class FlightController : MonoBehaviour
         return (float)Math.Pow(System.Math.E, -Math.Pow(5 * x, 2));
     }
 
-    void FixedUpdate() 
+    void applyForces() 
     {
         float gravity = -9.81f;
 
@@ -88,7 +142,7 @@ public class FlightController : MonoBehaviour
         float xForce = -rb.velocity.y * speedForce;
         float yForce = liftForce * rb.velocity.x;
 
-        if(flightDirection == -1 || dead)
+        if(flightDirection == -1 || dead || diving)
         {
             yForce = 0;
             xForce = 0;
@@ -111,7 +165,13 @@ public class FlightController : MonoBehaviour
         Debug.Log($"xForce: {xForce}, yForce: {yForce}, rotation: {rotation}, rotationPercentage: {rotationPercentage}, xForceFunction: {xForceFunction(rotationPercentage - 0.5f)}");
 
         rb.AddForce(new Vector2(xForce, yForce));
+    }
 
-        transform.rotation = Quaternion.Euler(0, 0, Mathf.Clamp(rb.velocity.y * rotationAmount - 90, -180, 0));
+    void FixedUpdate() 
+    {
+        if(gameStarted) {
+            applyForces();
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, Mathf.Clamp(rb.velocity.y * rotationAmount - 90, -180, 0)), 0.025f);
+        }
     }
 }
