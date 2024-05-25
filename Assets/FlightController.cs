@@ -26,7 +26,7 @@ public class FlightController : MonoBehaviour
     [SerializeField] float upliftMultiplier = 2f;
     [SerializeField] float upliftDrag = 2f;
 
-    [SerializeField] float jumpForce = 10f;
+    [SerializeField] Vector2 jumpForce = new Vector2(1, 10);
 
     bool gameStarted = false;
     bool diving = false;
@@ -35,7 +35,7 @@ public class FlightController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Ground")
+        if(collision.gameObject.tag == "Ground" && !dead)
         {
             animator.SetTrigger("fall");
             // rb.velocity = Vector2.zero;
@@ -43,7 +43,7 @@ public class FlightController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
             // rb.freezeRotation = true;
             dead = true;
-            GetComponent<CinemachineImpulseSource>().GenerateImpulse();
+            // GetComponent<CinemachineImpulseSource>().GenerateImpulse();
         }
     }
     
@@ -75,6 +75,7 @@ public class FlightController : MonoBehaviour
     public void WingsuitDeployed()
     {
         animator.SetBool("gameStarted", true);
+        // rb.AddForce(new Vector2(1, 1) * 10);
     }
 
     public void Jump()
@@ -82,7 +83,7 @@ public class FlightController : MonoBehaviour
         gameStarted = true;
         rb.simulated = true;
         GetComponent<CircleCollider2D>().enabled = true;
-        rb.AddForce(new Vector2(1f, 50.5f) * jumpForce, ForceMode2D.Force);
+        rb.AddForce(jumpForce, ForceMode2D.Force);
     }
 
     public void StartDiving()
@@ -109,7 +110,7 @@ public class FlightController : MonoBehaviour
             animator.SetTrigger("space");
         
             if(diving) {
-                gameStarted = true;
+                Debug.Log("stop diving");
                 diving = false;
             } else {
                 rb.AddForce(Vector2.right * boostForce, ForceMode2D.Impulse);
@@ -147,6 +148,7 @@ public class FlightController : MonoBehaviour
             yForce = 0;
             xForce = 0;
         } else if(flightDirection == 1) {
+            Debug.Log("flyin up");
             yForce += upliftMultiplier * rb.velocity.x;
             float newXForce = -upliftDrag * Mathf.Max(0, rb.velocity.y);
             if(newXForce > 0) {
@@ -162,7 +164,7 @@ public class FlightController : MonoBehaviour
  
         yForce += gravity * 1.3f;
 
-        Debug.Log($"xForce: {xForce}, yForce: {yForce}, rotation: {rotation}, rotationPercentage: {rotationPercentage}, xForceFunction: {xForceFunction(rotationPercentage - 0.5f)}");
+        // Debug.Log($"xForce: {xForce}, yForce: {yForce}, rotation: {rotation}, rotationPercentage: {rotationPercentage}, xForceFunction: {xForceFunction(rotationPercentage - 0.5f)}");
 
         rb.AddForce(new Vector2(xForce, yForce));
     }
@@ -171,7 +173,7 @@ public class FlightController : MonoBehaviour
     {
         if(gameStarted) {
             applyForces();
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, Mathf.Clamp(rb.velocity.y * rotationAmount - 90, -180, 0)), 0.025f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, Mathf.Clamp(rb.velocity.y * rotationAmount - 90, -180, 0)), 0.1f);
         }
     }
 }

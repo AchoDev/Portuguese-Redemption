@@ -36462,6 +36462,7 @@ GameObject:
   - component: {fileID: 1459223468}
   - component: {fileID: 1459223467}
   - component: {fileID: 1459223473}
+  - component: {fileID: 1459223474}
   m_Layer: 0
   m_Name: Leo Superhero
   m_TagString: Untagged
@@ -36570,10 +36571,10 @@ MonoBehaviour:
   liftForce: 0.86
   speedForce: 0.5
   boostForce: 10
-  rotationAmount: 3.64
+  rotationAmount: 6
   upliftMultiplier: 1.32
-  upliftDrag: 0.22
-  jumpForce: 8
+  upliftDrag: 0.15
+  jumpForce: {x: 3, y: 200}
 --- !u!212 &1459223471
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -36679,6 +36680,20 @@ CircleCollider2D:
   m_Offset: {x: -0.33768487, y: 2.5880454}
   serializedVersion: 2
   m_Radius: 2.0067558
+--- !u!114 &1459223474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459223466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a30387fb8f8b85e4caad50f6510be1ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minMaxOrthoSize: {x: 3.3555012, y: 9.36}
+  orthoSizeMultiplier: 0.31
 --- !u!1 &1459590635
 GameObject:
   m_ObjectHideFlags: 0
