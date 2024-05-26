@@ -75,8 +75,8 @@
     <Compile Include="Assets\FightConductor.cs" />
     <Compile Include="Assets\FlightController.cs" />
     <Compile Include="Assets\CameraOffset.cs" />
-    <Compile Include="Assets\Cutscene.cs" />
     <Compile Include="Assets\MoveCamByVelocity.cs" />
+    <Compile Include="Assets\Cutscene.cs" />
     <Compile Include="Assets\NPCFightController.cs" />
     <Compile Include="Assets\OnTriggerEnter.cs" />
     <Compile Include="Assets\cutscenes\LoopTrack.cs" />
@@ -1001,12 +1001,12 @@
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="SimpleMinMaxSlider">
       <HintPath>Library\ScriptAssemblies\SimpleMinMaxSlider.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Extras.Editor">
